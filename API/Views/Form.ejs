@@ -1,0 +1,30 @@
+<div class="add-container">
+
+    <label for="title"><b>Titre</b></label>
+    <input id="box-text" type="text" name="title" if (slot) { value="<%= slot.title %>" } else { placeholder = "Enter title" } required>
+
+    <div class="dates">
+
+        <label for="startDate"><b>Date de début</b></label>
+        <input id="box-text" type="date" name="startDate" if (slot) { value="<%= slot.startDate %>" } required>
+
+        <label for="endDate"><b>Date de fin</b></label>
+        <input id="box-text" type="date" name="endDate" if (slot) { value="<%= slot.endDate %>" } required>
+    
+    </div>
+
+    <br>
+
+    <label for="description"><b>Description</b></label>
+    <input id="box-text" type="text" name="description" if (slot) { value="<%= slot.description %>" } else { placeholder="Enter Description" } required>
+
+    <label for="assignee"><b>Assigné(s)</b></label>
+    <input id="box-text" type="text" name="assignee" if (slot) { value="<%= slot.assignee %>" } else { placeholder="nom.prenom séparés par des /" }>
+
+    <button class="pop-button" type="submit"><%= button %></button>
+
+    <div class="cancel-container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id<%= id %>').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+
+</div>

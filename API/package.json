@@ -1,0 +1,27 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-basic-auth": "^1.1.6",
+    "express-fileupload": "^1.0.0",
+    "gmail-send": "^1.2.14",
+    "http-proxy": "^1.17.0",
+    "mongoose": "^5.3.16",
+    "morgan": "^1.9.1",
+    "nodemailer": "^5.1.1",
+    "request": "^2.88.0",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

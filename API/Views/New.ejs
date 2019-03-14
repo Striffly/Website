@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="/Public/New.css">
+
+<button class="add-button" onclick="document.getElementById('idAdd').style.display='block'">Ajouter un item</button>
+
+<div id="idAdd" class="modal">
+    <span onclick="document.getElementById('idAdd').style.display='none'"
+    class="close" title="Close Modal">&times;</span>
+    <form class="modal-content animate" action="/admin/timeline/add" method="post">
+
+        <div class="add-container">
+
+            <%- include('./Form', {button: 'Ajouter', id: 'Add', slot: {}}) %>
+            
+        </div>
+
+    </form>
+</div>
