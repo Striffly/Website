@@ -10,14 +10,14 @@ export default class Tiles extends Component {
                 <div className="items">
                     <div className="textbox left">
                         <div className="textbox-title">
-                            <h3>Chat en ligne</h3>
+                            <h3>{this.props.title}</h3>
                         </div>
                         <div className="textbox-text">
-                            <p>Ce chat entre le médecin et le patient, permet de demander et de donner des informations complémentaires concernant le suivi d'un traitement.</p>
+                            <p>{this.props.content}</p>
                         </div>
                     </div>
                     <div className="right">
-                        <img src={require("../Images/Chat.jpg")} className="img-thumbnail" style={{ height: 'auto', width: 'auto', maxWidth: '300px', maxHeight: '300px' }} alt="chat"></img>
+                        <img src={require("../Images/" + this.props.img)} className="img-thumbnail" style={{ height: 'auto', width: 'auto', maxWidth: '300px', maxHeight: '300px' }} alt="chat"></img>
                     </div>
                 </div>
             </div>

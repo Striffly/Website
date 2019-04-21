@@ -40,23 +40,9 @@ export default class Timeline extends Component {
                         </div>
                     </div>
 
-                    <Tiles />
-
-                    <div className="container">
-                        <div className="items">
-                            <div className="textbox right">
-                                <div className="textbox-title">
-                                    <h3>Notifications et rappels</h3>
-                                </div>
-                                <div className="textbox-text">
-                                    <p>Des notifications permettant au patient de ne pas oublier de prendre son traitement, ainsi qu'un système de rappel des vaccins à venir.</p>
-                                </div>
-                            </div>
-                            <div className="left">
-                                <img src={require("../Images/Notification.jpg")} alt="notif" className="img-thumbnail" style={{height: 'auto', width: 'auto', maxWidth: '300px', maxHeight: '300px'}}></img>
-                            </div>
-                        </div>
-                    </div>
+                    <Tiles title="Chat en ligne" img="Chat.jpg" content="Ce chat entre le médecin et le patient, permet de demander et de donner des informations complémentaires concernant le suivi d'un traitement." />
+                    
+                    <Tiles title="Notifications et rappels" img="Notification.jpg" content="Des notifications permettant au patient de ne pas oublier de prendre son traitement, ainsi qu'un système de rappel des vaccins à venir." />
 
                     <div className="container">
                         <div className="items">
