@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Public/Index.css';
-import Contact from '../Views/Contact';
+import Contact from '../Components/Contact';
+import Tiles from '../Components/Tiles'
 
 export default class Timeline extends Component {
   
@@ -19,7 +20,6 @@ export default class Timeline extends Component {
                 </div>
 
                 <div>
-
                     <div className="container" id="ov1">
                         <div className="container-intro">
                             <div className="intro-title">Notre vision</div>
@@ -40,21 +40,7 @@ export default class Timeline extends Component {
                         </div>
                     </div>
 
-                    <div className="container">
-                        <div className="items">
-                            <div className="textbox left">
-                                <div className="textbox-title">
-                                    <h3>Chat en ligne</h3>
-                                </div>
-                                <div className="textbox-text">
-                                    <p>Ce chat entre le médecin et le patient, permet de demander et de donner des informations complémentaires concernant le suivi d'un traitement.</p>
-                                </div>
-                            </div>
-                            <div className="right">
-                                <img src={require("../Images/Chat.jpg")} className="img-thumbnail" style={{height: 'auto', width: 'auto', maxWidth: '300px', maxHeight: '300px'}} alt="chat"></img>
-                            </div>  
-                        </div>
-                    </div>
+                    <Tiles />
 
                     <div className="container">
                         <div className="items">

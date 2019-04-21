@@ -18,6 +18,7 @@ export default class Timeline extends Component {
                     {/* 
                     <input type="text" id="subject" name="subject" placeholder="Subject"></input>
                     */}
+                    
                     <div className="contact-bottom">
                         <textarea id="message" name="message" placeholder="Message" style={{height: '200px'}}></textarea>
 
