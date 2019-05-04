@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 import Index from './Views/Index';
+import Login from './Views/Login';
 
 class App extends Component {
     render() {
@@ -11,6 +12,11 @@ class App extends Component {
                     <Route exact={true} path='/' render={() => (
                         <div>
                             <Index />
+                        </div>
+                    )}/>
+                    <Route exact={true} path='/login' render={() => (
+                        <div>
+                            <Login />
                         </div>
                     )}/>
                 </div>
