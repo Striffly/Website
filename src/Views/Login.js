@@ -35,7 +35,7 @@ export default class Login extends Component {
                         <input type="password" className="form-control" id="password-input" placeholder="Password" />
                     </div>
                     <button type="submit" className="btn btn-block btn-success btn-space" onClick={tryLogin}>Login</button>
-                    <button type="submit" className="btn btn-block btn-secondary btn-space"><Link to='/register'></Link>Register</button>
+                    <Link to="/register" className="btn btn-block btn-secondary btn-space">Register</Link>
                 </form>
             </div>
         )
