@@ -1,24 +1,12 @@
 import '../Public/Login.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import CareApi from '../api';
 
 function tryLogin() {
-    var data = {
-        "login": document.getElementById('email-input').value,
-        "password": document.getElementById('password-input').value
-    };
-    (async () => {
-        const response = await fetch('http://user.epicare.fr/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: data
-        });
-        const content = await response.json();
-        console.log(content);
-    })();
+    const login = document.getElementById('email-input').value;
+    const password = document.getElementById('password-input').value;
+    CareApi.tryLogin(login, password);
 }
 
 export default class Login extends Component {
