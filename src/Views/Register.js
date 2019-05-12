@@ -42,7 +42,7 @@ class RegisterPage extends React.Component {
         // if (user.firstName && user.lastName && user.email && user.password) {
         //     dispatch(userActions.register(user));
         // }
-        var content = CareApi.tryRegister(this.state.user.firstName,
+        var content = CareApi.register(this.state.user.firstName,
             this.state.user.lastName,
             this.state.user.email,
             this.state.user.password);
