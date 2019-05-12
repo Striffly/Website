@@ -6,7 +6,7 @@ import CareApi from '../api';
 function tryLogin() {
     const login = document.getElementById('email-input').value;
     const password = document.getElementById('password-input').value;
-    CareApi.tryLogin(login, password);
+    CareApi.login(login, password);
 }
 
 export default class Login extends Component {
