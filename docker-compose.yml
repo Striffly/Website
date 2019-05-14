@@ -3,6 +3,5 @@ services:
     website:
         image: react:latest
         build: .
-        environment:
-            SERVER_PORT: 8090
-        command: yarn start
+        ports:
+            - "8090:8090"

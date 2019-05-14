@@ -17,7 +17,7 @@ export default class Login extends Component {
                 <form className="box">
                     <div className="form-group">
                         <input type="email" className="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Email" />
-                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else, cause we ain't gay</small>
+                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else, 'cause we are good guys</small>
                     </div>
                     <div className="form-group">
                         <input type="password" className="form-control" id="password-input" placeholder="Password" />
