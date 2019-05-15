@@ -1,9 +1,13 @@
 FROM node:latest
 
-COPY . /home/Website
-WORKDIR /home/Website
+WORKDIR /home/
 
 EXPOSE 8090
+
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+RUN git clone https://github.com/epicare2021/Website.git
+
+WORKDIR Website
+
 RUN yarn install
-CMD yarn start
+CMD git pull && yarn start
