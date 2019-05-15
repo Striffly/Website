@@ -77,12 +77,7 @@ class RegisterPage extends React.Component {
                             <label htmlFor="exampleInputPassword1">Password</label>
                             <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                         </div>
-                        <div className="form-check">
-                            <label className="form-check-label" htmlFor="exampleCheck1">Yaaa</label>
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                       <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
