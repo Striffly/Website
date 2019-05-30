@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+//import { Link } from 'react-router-dom';
+//import { connect } from 'react-redux';
 import CareApi from '../api';
 // import { userActions } from '../_actions';
 
@@ -37,8 +37,8 @@ class RegisterPage extends React.Component {
         event.preventDefault();
 
         this.setState({ submitted: true });
-        const { user } = this.state;
-        const { dispatch } = this.props;
+  //      const { user } = this.state;
+    //    const { dispatch } = this.props;
         // if (user.firstName && user.lastName && user.email && user.password) {
         //     dispatch(userActions.register(user));
         // }
@@ -50,8 +50,8 @@ class RegisterPage extends React.Component {
     }
 
     render() {
-        const { registering } = this.props;
-        const { user, submitted } = this.state;
+      //  const { registering } = this.props;
+      //  const { user, submitted } = this.state;
         return (
             <div>
                 <br /><br /><br /><br /><br /><br />
