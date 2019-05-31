@@ -27,7 +27,7 @@ export default class Chat extends Component {
     }
     render() {
         return (
-            <div className="container bg-faded">
+            <div className="container bg-faded box">
                 <br></br><br></br><br></br>
                 <div className="row list-group" id="messages" action="">
                 </div>

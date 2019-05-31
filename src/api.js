@@ -1,19 +1,20 @@
-export default class CareApi {
-    static tryRequest(method, data, npath) {
-        var content;
+import axios from 'axios';
 
-        (async() => {
-            const response = await fetch('localhost:8080/' + npath, {
-                method: method,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: data
-            });
-            content = await response.json();
-        })();
-        return content;
+export default class CareApi {
+    static tryRequest(usedMethod, data, npath) {
+        var response;
+        axios({
+            method: usedMethod,
+            url: 'http://localhost:8080/' + npath,
+            //url: 'http://user.epicare.fr/' + npath,
+            data: data,
+        }).then(function(answer) {
+            console.log(answer);
+            response = answer.data;
+        }).catch(function(err) {
+            console.log(npath + ': ' + err);
+        });
+        return response;
     }
     static login(email, passwd) {
         const data = {
