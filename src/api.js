@@ -3,7 +3,7 @@ export default class CareApi {
         var content;
 
         (async() => {
-            const response = await fetch('http://epicare.fr:8080/' + npath, {
+            const response = await fetch('localhost:8080/' + npath, {
                 method: method,
                 headers: {
                     'Accept': 'application/json',
