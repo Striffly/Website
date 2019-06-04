@@ -1,3 +1,4 @@
+import '../Public/Common.css'
 import React from 'react';
 import CareApi from '../api';
 import { Link } from 'react-router-dom';
@@ -8,16 +9,18 @@ function tryRegister() {
     const email = document.getElementById('email-input').value;
     const password = document.getElementById('password-input').value;
     const type = document.getElementById('type-input').value;
-    CareApi.register(name, last_name, email, password, type);
+    var promise = CareApi.register(name, last_name, email, password, type);
+    promise.then(function(response) {
+        console.log(response);
+    });
     return false;
 }
 
 class RegisterPage extends React.Component {
     render() {
         return (
-            <div>
-                <br /><br /><br /><br /><br /><br />
-                <div className="col-md-6 col-md-offset-3">
+            <div className="center-screen">
+                <div className="box">
                     <form>
                         <div className="form-group">
                             <label>First Name</label>
@@ -36,17 +39,12 @@ class RegisterPage extends React.Component {
                             <label>Password</label>
                             <input type="password" className="form-control" id="password-input" placeholder="Password" />
                         </div>
-                        <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Account type
-                            </button>
-                            <div className="dropdown-menu" id="type-input" aria-labelledby="dropdownMenu2">
-                                <button className="dropdown-item" type="button">Doctor</button>
-                                <button className="dropdown-item" type="button">Patient</button>
-                            </div>
+                        <div className="form-group">
+                            <label>Account type</label>
+                            <input type="name" className="form-control" id="type-input" placeholder="patient / doctor ?" />
                         </div>
                         <button type="button" className="btn btn-block btn-primary" onClick={tryRegister}>Register</button>
-                        <Link to="/register" className="btn btn-block btn-secondary btn-space">Already registed ?</Link>
+                        <Link to="/login" className="btn btn-block btn-secondary btn-space">Already registed ?</Link>
                     </form>
                 </div>
             </div>

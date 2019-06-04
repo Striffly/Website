@@ -5,6 +5,7 @@ import Index from './Views/Index';
 import Login from './Views/Login';
 import { Register } from './Views/Register';
 import Chat from './Views/Chat';
+import Profile from './Views/Profile';
 
 class App extends Component {
     render() {
@@ -16,21 +17,10 @@ class App extends Component {
                             <Index />
                         </div>
                     )}/>
-                    <Route exact={true} path='/login' render={() => (
-                        <div>
-                            <Login />
-                        </div>
-                    )}/>
-                    <Route exact={true} path='/register' render={() => (
-                        <div>
-                            <Register />
-                        </div>
-                    )}/>
-                    <Route exact={true} path='/chat' render={() => (
-                        <div>
-                            <Chat />
-                        </div>
-                    )}/>
+                    <Route exact={true} path='/login' component={Login}/>
+                    <Route exact={true} path='/register' component={Register}/>
+                    <Route exact={true} path='/chat' component={Chat}/>
+                    <Route exact={true} path='/profile' component={Profile}/>
                 </div>
             </BrowserRouter>
         );
