@@ -24,7 +24,7 @@ export default class Login extends Component {
     notLoggedPage() {
         return (
             <div className="center-screen">
-                <h1>You should be connected to access this page</h1>
+                <h1>You must be connected to access this page</h1>
                 <Link to="/login" className="btn btn-warning btn-space">Login</Link>
             </div>
         );
