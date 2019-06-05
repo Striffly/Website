@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const userdataToken = 'epicare-login-data';
 
-export default class CareApi {
+export default class CareApi  {
     static async request(method, data, path) {
         const response = await axios({
             method: method,
@@ -80,7 +80,7 @@ export default class CareApi {
     }
     static isConnected() {
         var item = sessionStorage.getItem(userdataToken);
-        if (item === "undefined" || item == null)
+        if (item === "undefined" || item == null || item.length === 0)
             return false;
         return true;
     }

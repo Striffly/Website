@@ -1,4 +1,6 @@
-//import '../Public/Profile.css';
+import '../Public/Profile.css';
+import '../Public/Common.css';
+import EpicareCommon from '../common'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import CareApi from '../api';
@@ -12,7 +14,6 @@ export default class Login extends Component {
         };
         this.refreshInfo = (response) => {
             if (response != null) {
-                console.log(response.data.user);
                 this.setState({
                     user: response.data.user,
                 });
@@ -20,19 +21,14 @@ export default class Login extends Component {
         };
     }
     componentWillMount() {
-        CareApi.getProfileInfo().then(this.refreshInfo);
-    }
-
-    loadingScreenPage() {
-        return (
-            <div className="center-screen">
-                <h1>Loading ...</h1>
-            </div>
-        );
+        if (CareApi.isConnected())
+            CareApi.getProfileInfo().then(this.refreshInfo);
     }
     render() {
         if (!CareApi.isConnected())
             return (<NotLogged/>);
+        if (CareApi.isConnected() === false)
+            return EpicareCommon.notLoggedPage();
         if (!this.state.user)
             return this.loadingScreenPage();
         return (
@@ -44,7 +40,8 @@ export default class Login extends Component {
                     <hr className="my-4" />
                     <p>{this.state.user.type}</p>
                     <p className="lead">
-                        <Link className="btn btn-lg btn-danger" to="/login" onClick={CareApi.logout}>Logout</Link>
+                        <Link className="btn btn-lg btn-warning btn-space" to="/profile/settings">Settings</Link>
+                        <Link className="btn btn-lg btn-outline-danger btn-space" to="/login" onClick={CareApi.logout}>Logout</Link>
                     </p>
                 </div>
             </div>
