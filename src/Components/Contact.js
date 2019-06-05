@@ -13,7 +13,7 @@ export default class Timeline extends Component {
                     <form action="/api/contact" method="POST">
                     <input className="contact-input" type="text" id="name" name="name" placeholder="Nom"></input>
 
-                    <input className="contact-input" type="text" id="email" name="email" placeholder="Email"></input>
+                    <input className="contact-input contact-email" type="text" id="email" name="email" placeholder="Email"></input>
 
                     {/* 
                     <input type="text" id="subject" name="subject" placeholder="Subject"></input>

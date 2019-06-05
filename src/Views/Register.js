@@ -11,12 +11,14 @@ function tryRegister() {
     const type = document.getElementById('type-input').value;
     var promise = CareApi.register(name, last_name, email, password, type);
     promise.then(function(response) {
-        console.log(response);
+        if (response != null && response.status === 200) {
+            alert("We've sent you a validation email");
+        }
     });
     return false;
 }
 
-class RegisterPage extends React.Component {
+export default class RegisterPage extends React.Component {
     render() {
         return (
             <div className="center-screen">
@@ -51,4 +53,3 @@ class RegisterPage extends React.Component {
         );
     }
 }
-export { RegisterPage as Register };

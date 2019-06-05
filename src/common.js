@@ -10,4 +10,12 @@ export default class EpicareCommon extends Component {
             </div>
         );
     }
+    static loadingScreenPage() {
+        return (
+            <div className="center-screen">
+                <h1>Loading ...</h1>
+                <button className="btn btn-lg btn-warning" onClick={this.refreshInfo}>Too long ?</button>
+            </div>
+        );
+    }
 }

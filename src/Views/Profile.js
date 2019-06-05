@@ -30,7 +30,7 @@ export default class Login extends Component {
         if (CareApi.isConnected() === false)
             return EpicareCommon.notLoggedPage();
         if (!this.state.user)
-            return this.loadingScreenPage();
+            return EpicareCommon.loadingScreenPage();
         return (
             <div>
                 <div className="jumbotron">
