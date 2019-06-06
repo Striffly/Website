@@ -95,4 +95,7 @@ export default class CareApi {
     static logout() {
         sessionStorage.clear();
     }
+    static getprescription() {
+        return this.tryQuery('GET', "token="+this.getSessionToken(), "download")
+    }
 }
