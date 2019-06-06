@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import CareApi from '../api';
+import NotLogged from "../Components/NotLogged";
 
 export default class Login extends Component {
     constructor(props) {
@@ -21,14 +22,7 @@ export default class Login extends Component {
     componentWillMount() {
         CareApi.getProfileInfo().then(this.refreshInfo);
     }
-    notLoggedPage() {
-        return (
-            <div className="center-screen">
-                <h1>You must be connected to access this page</h1>
-                <Link to="/login" className="btn btn-warning btn-space">Login</Link>
-            </div>
-        );
-    }
+
     loadingScreenPage() {
         return (
             <div className="center-screen">
@@ -38,7 +32,7 @@ export default class Login extends Component {
     }
     render() {
         if (!CareApi.isConnected())
-            return this.notLoggedPage();
+            return (<NotLogged/>);
         if (!this.state.user)
             return this.loadingScreenPage();
         return (
