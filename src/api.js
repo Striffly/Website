@@ -95,7 +95,22 @@ export default class CareApi {
     static logout() {
         sessionStorage.clear();
     }
-    static getprescription() {
-        return this.tryQuery('GET', "token="+this.getSessionToken(), "download")
+    static getFileNames() {
+        let token = this.getSessionToken();
+        if (token == null)
+            token = "";
+        const query = {
+            token: token,
+        };
+        return this.tryQuery('GET', query, "download")
+    }
+    static getFile(fileName) {
+        let token = this.getSessionToken();
+        if (token == null)
+            token = "";
+        const query = {
+            token: token,
+        };
+        return this.tryQuery('GET', query, "download/" + fileName)
     }
 }
