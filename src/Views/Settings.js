@@ -2,7 +2,7 @@ import '../Public/Settings.css';
 import '../Public/Common.css';
 import EpicareCommon from '../common'
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import CareApi from '../api';
 
 export default class Settings extends Component {
