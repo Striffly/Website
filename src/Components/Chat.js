@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container, Row, Col, Form, InputGroup, FormControl,
+  Container, Row, Col, FormControl,
 } from 'react-bootstrap';
 import CareApi from '../api';
 import Navbar from './Navbar';
