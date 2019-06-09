@@ -1,20 +1,21 @@
 import io from 'socket.io-client';
 
 export default class CareChat {
-    constructor(token, onMessageCallback) {
-        this.address = 'http://epicare.fr:8081/';
-        this.token = token;
-        this.is_connected = false;
-        this.socket = io.connect(this.address, { query: this.token, transports: ['websocket'] });
-        this.data = [];
-        this.socket.on('message', onMessageCallback);
+  constructor(token, onMessageCallback) {
+    this.address = 'http://epicare.fr:8081/';
+    this.token = token;
+    this.is_connected = false;
+    this.socket = io.connect(this.address, { query: this.token, transports: ['websocket'] });
+    this.data = [];
+    this.socket.on('message', onMessageCallback);
+  }
+
+  _on_receive_start(err, answer) {
+    if (err) {
+      console.log(err);
+      return;
     }
-    _on_receive_start(err, answer) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        if (answer.logs == null)
+    if (answer.logs == null)
                 return;
         answer.logs.forEach(message => {
             this.data.append(message);
