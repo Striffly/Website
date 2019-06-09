@@ -60,8 +60,16 @@ export default class Login extends Component {
     const messages = this.state.messages;
     if ((typeof this.state.input !== 'undefined') && (this.state.input !== '')) {
       messages.push(new Message({ id: 0, message: this.state.input }));
-      messages.push(new Message({ id: 1, message: "Désolé, je n'ai pas compris votre question :'(", senderName: 'Epicare Bot' }));
-      messages.push(new Message({ id: 1, message: "Essayez avec l'un des mots suivants : chat, ordonnances.", senderName: 'Epicare Bot' }));
+      if (this.state.input.includes('chat')) {
+        messages.push(new Message({ id: 1, message: 'Le chat a pour objectif de vous mettre directement en relation avec votre pharmacien ou votre médecin traitant.', senderName: 'Epicare Bot' }));
+        messages.push(new Message({ id: 1, message: "N'hésitez pas à me poser d'autres questions !", senderName: 'Epicare Bot' }));
+      } else if (this.state.input.includes('ordonnances')) {
+        messages.push(new Message({ id: 1, message: 'Vous pourrez consulter vos ordonnances directement depuis notre application et notre site web. Cliquez sur le boutton "Prescription" en haut de cette page pour plus de détails.', senderName: 'Epicare Bot' }));
+        messages.push(new Message({ id: 1, message: "N'hésitez pas à me poser d'autres questions !", senderName: 'Epicare Bot' }));
+      } else {
+        messages.push(new Message({ id: 1, message: "Désolé, je n'ai pas compris votre question :'(", senderName: 'Epicare Bot' }));
+        messages.push(new Message({ id: 1, message: "Essayez avec l'un des mots suivants : chat, ordonnances.", senderName: 'Epicare Bot' }));
+      }
     }
     this.setState({ input: '' });
   }
