@@ -4,13 +4,32 @@ import { Link } from 'react-router-dom';
 import {
   Container, Row, Col, FormControl,
 } from 'react-bootstrap';
+import ChatBubble from 'react-chat-bubble';
 import CareApi from '../api';
 import Navbar from './Navbar';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
+    this.sentMessage = [<div>Test</div>];
     this.state = {
+      messages: [{
+        type: 0,
+        image: 'user_default_avatar.png',
+        text: 'Hello! Good Morning!',
+      }, {
+        type: 1,
+        image: 'user_default_avatar.png',
+        text: 'Hello! Good Afternoon!',
+      }, {
+        type: 0,
+        image: 'user_default_avatar.png',
+        text: 'Hello! Good Morning!',
+      }, {
+        type: 0,
+        image: 'user_default_avatar.png',
+        text: 'Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!Hello! Good Morning!',
+      }],
       user: null,
       input: '',
     };
@@ -51,7 +70,9 @@ export default class Login extends Component {
   }
 
   sendMessage() {
-    alert(this.state.input);
+    // alert(this.state.input);
+    this.sentMessage.push(<div>{this.state.input}</div>);
+    this.setState({ sentMessage: this.sentMessage });
     this.setState({ input: '' });
   }
 
@@ -80,9 +101,9 @@ export default class Login extends Component {
             </Col>
             <Col sm={2} style={{ paddingTop: '30px', paddingBottom: '25px' }}>{displayName}</Col>
           </Row>
-          <Row style={{ borderLeft: '1px solid', borderRight: '1px solid', height: '70vh' }}>
+          <Row style={{ borderLeft: '1px solid', borderRight: '1px solid', height: '70vh', overflowY: 'scroll' }}>
             <Col>
-              Coucou les amis
+              <ChatBubble messages={this.state.messages} />
             </Col>
           </Row>
           <Row style={{ border: '1px solid', height: '5vh' }}>
