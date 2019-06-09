@@ -2,7 +2,7 @@ import '../Public/Common.css'
 import '../Public/Login.css';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CareApi from '../api';
+import CareApi from '../Api/api';
 
 export default class Login extends Component {
     constructor(props) {

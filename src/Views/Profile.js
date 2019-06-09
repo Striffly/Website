@@ -3,7 +3,7 @@ import '../Public/Common.css';
 import EpicareCommon from '../common'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import CareApi from '../api';
+import CareApi from '../Api/api';
 import NotLogged from "../Components/NotLogged";
 
 export default class Login extends Component {
