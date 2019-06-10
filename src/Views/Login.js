@@ -7,20 +7,20 @@ import CareApi from '../Api/api';
 export default class Login extends Component {
     constructor(props) {
         super(props);
-        this.redirectProfile = this.redirectProfile.bind(this);
+        this.redirectPrescription = this.redirectPrescription.bind(this);
         this.tryLogin = this.tryLogin.bind(this);
     }
-    redirectProfile(loginResponse) {
+    redirectPrescription(loginResponse) {
         if (loginResponse != null) {
             CareApi.setSessionToken(loginResponse.data.token);
-            this.props.history.push('/profile');
+            this.props.history.push('/prescription');
         }
     }
     tryLogin() {
         const login = document.getElementById('email-input').value;
         const password = document.getElementById('password-input').value;
         var promise = CareApi.login(login, password);
-        promise.then(this.redirectProfile);
+        promise.then(this.redirectPrescription);
     }
     render() {
 

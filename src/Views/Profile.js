@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import CareApi from '../Api/api';
 import NotLogged from "../Components/NotLogged";
+import Navbar from "../Components/Navbar";
 
 export default class Login extends Component {
     constructor(props) {
@@ -33,6 +34,7 @@ export default class Login extends Component {
             return EpicareCommon.loadingScreenPage();
         return (
             <div>
+                <Navbar/>
                 <div className="jumbotron">
                     <h1 className="display-4">{this.state.user.name}</h1>
                     <p className="lead">{this.state.user.last_name}</p>
