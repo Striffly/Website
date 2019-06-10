@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import Index from './Views/Index';
 import Login from './Views/Login';
+import LandingPage from './Views/LandingPage';
 import Register from './Views/Register';
 import Chat from './Views/Chat';
 import Profile from './Views/Profile';
@@ -15,7 +16,7 @@ class App extends Component {
                 <div>
                     <Route exact={true} path='/' render={() => (
                         <div>
-                            <Index />
+                            <LandingPage />
                         </div>
                     )}/>
                     <Route exact={true} path='/login' component={Login}/>
@@ -28,6 +29,6 @@ class App extends Component {
             </BrowserRouter>
         );
     }
-}   
+}
 
 export default App;
