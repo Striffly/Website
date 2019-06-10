@@ -3,8 +3,9 @@ import Navbar from "../Components/Navbar";
 import PrescriptionApi from "../Api/Prescription";
 import CareApi from '../Api/api';
 import NotLogged from "../Components/NotLogged";
-import { Figure, ButtonToolbar, Button } from "react-bootstrap";
+import { Figure, Button, Col } from "react-bootstrap";
 import ExifOrientationImg from 'react-exif-orientation-img'
+import axios from 'axios';
 
 import '../Public/Prescription.css';
 import '../Public/Common.css'
@@ -17,6 +18,8 @@ export default class Prescription extends React.Component {
             fileNames: [],
             files: [],
             fileZoomed: null,
+            image: "",
+            selectedFile: null,
         };
         this.refreshFiles = (response) => {
             if (response != null) {
@@ -26,7 +29,6 @@ export default class Prescription extends React.Component {
                 let fileNames = this.state.fileNames;
                 let docFiles = [];
                 fileNames.Files.forEach(function(item) {
-                    console.log(item.name);
                     docFiles.push(PrescriptionApi.getFile(item.name))
                 });
                 this.setState({
@@ -93,9 +95,28 @@ export default class Prescription extends React.Component {
         )
     }
 
-    render() {
-        const items = [];
+    onChange(e) {
+        this.setState({
+            selectedFile: e.target.files[0]
+        })
+    }
 
+    fileUploadHandler() {
+        const fd = new FormData();
+        console.log(this.state.selectedFile);
+        fd.append("img", this.state.selectedFile);
+        axios.post(PrescriptionApi.upload(), fd).then(res => {
+            console.log(res);
+        })
+        window.location.reload();
+    }
+
+
+
+    render() {
+        if (!CareApi.isConnected())
+            return (<NotLogged/>);
+        const items = [];
         for (const [index, value] of this.state.files.entries()) {
             items.push(
                 <Button variant="light" key={index} id='toto' onClick={((e) => this.handleClick(e, value))}>
@@ -109,8 +130,7 @@ export default class Prescription extends React.Component {
                 </Button>
             )
         }
-        if (!CareApi.isConnected())
-            return (<NotLogged/>);
+
         return (
             <div>
                 <div id="overlay">
@@ -123,9 +143,18 @@ export default class Prescription extends React.Component {
                 <div>
                     <Navbar/>
                     <div className="container ">
-                        <Button variant="primary" size="lg" onClick={() => (console.log("Uploaded"))}>
-                            Upload
-                        </Button>
+                        <div className="row align-items-center">
+                            <div className="image-upload">
+                                <label htmlFor="file-input">
+                                    <img src="http://www.pngall.com/wp-content/uploads/2/Upload-PNG.png" alt="upload"/>
+                                </label>
+                                <input id="file-input" type="file" name="file" style={{display:"none"}} onChange={(e)=>this.onChange(e)}/>
+                            </div>
+                            <Col xs={12} md={8}>
+                                <Button size="lg" onClick={()=>this.fileUploadHandler()}>Confirm</Button>
+                            </Col>
+                        </div>
+
                     </div>
                     <br/>
                     <br/>

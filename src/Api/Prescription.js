@@ -31,4 +31,11 @@ export default class PrescriptionApi {
             token = "";
         return ("http://epicare.fr:8082/download/" + fileName + "?token=" + token)
     }
+
+    static upload() {
+        let token = CareApi.getSessionToken();
+        if (token == null)
+            token = "";
+        return ("http://epicare.fr:8082/upload?token=" + token)
+    }
 }
