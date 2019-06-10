@@ -1,10 +1,10 @@
 import '../Public/Common.css'
 import '../Public/Login.css';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import CareApi from '../Api/api';
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(props) {
         super(props);
         this.redirectPrescription = this.redirectPrescription.bind(this);
@@ -41,3 +41,5 @@ export default class Login extends Component {
         )
     }
 }
+
+export default withRouter(Login);
