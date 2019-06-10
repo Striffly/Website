@@ -5,7 +5,7 @@ import {
   Container, Row, Col, FormControl,
 } from 'react-bootstrap';
 import { ChatFeed, Message } from 'react-chat-ui';
-import CareApi from '../api';
+import CareApi from  '../Api/api';
 import Navbar from './Navbar';
 
 // Ajout du fichier css

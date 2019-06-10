@@ -14,9 +14,11 @@ export default class CareApi  {
         });
         return response;
     }
+
     static tryRequest(usedMethod, data, npath) {
         return this.request(usedMethod, data, 'http://epicare.fr:8080/' + npath);
     }
+
     static tryQuery(method, query, npath) {
         var url = npath + '?';
 
@@ -26,6 +28,7 @@ export default class CareApi  {
         url = url.slice(0, -1);
         return this.tryRequest(method, undefined, url);
     }
+
     static login(email, passwd) {
         const data = {
             "email": email,
@@ -34,6 +37,7 @@ export default class CareApi  {
         var content = this.tryRequest('POST', data, 'login');
         return content;
     }
+
     static register(name, lastName, email, passwd, type) {
         const data = {
             "name": name,
@@ -45,6 +49,7 @@ export default class CareApi  {
         var content = this.tryRequest('POST', data, 'register');
         return content;
     }
+
     static confirmAccount(token) {
         const data = {
             "token": token
@@ -52,6 +57,7 @@ export default class CareApi  {
         var content = this.tryRequest('POST', data, 'confirm');
         return content;
     }
+
     static sendResetPassword(email) {
         const data = {
             "email": email
@@ -59,6 +65,7 @@ export default class CareApi  {
         var content = this.tryRequest('GET', data, 'reset');
         return content;
     }
+
     static resetPassword(emailToken, email, passwd) {
         const data = {
             "token": emailToken,
@@ -68,6 +75,7 @@ export default class CareApi  {
         var content = this.tryRequest('POST', data, 'reset');
         return content;
     }
+
     static getProfileInfo() {
         var token = this.getSessionToken();
         if (token == null)
@@ -78,39 +86,25 @@ export default class CareApi  {
         var content = this.tryQuery('GET', query, 'profile');
         return content;
     }
+
     static isConnected() {
         var item = sessionStorage.getItem(userdataToken);
         if (item === "undefined" || item == null || item.length === 0)
             return false;
         return true;
     }
+
     static getSessionToken() {
         var token = sessionStorage.getItem(userdataToken);
         return token;
     }
+
     static setSessionToken(data) {
         this.logout();
         sessionStorage.setItem(userdataToken, data);
     }
+
     static logout() {
         sessionStorage.clear();
-    }
-    static getFileNames() {
-        let token = this.getSessionToken();
-        if (token == null)
-            token = "";
-        const query = {
-            token: token,
-        };
-        return this.tryQuery('GET', query, "download")
-    }
-    static getFile(fileName) {
-        let token = this.getSessionToken();
-        if (token == null)
-            token = "";
-        const query = {
-            token: token,
-        };
-        return this.tryQuery('GET', query, "download/" + fileName)
     }
 }

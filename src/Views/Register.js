@@ -1,6 +1,6 @@
 import '../Public/Common.css'
 import React from 'react';
-import CareApi from '../api';
+import CareApi from '../Api/api';
 import { Link } from 'react-router-dom';
 
 function tryRegister() {
