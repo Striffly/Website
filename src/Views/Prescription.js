@@ -27,22 +27,17 @@ export default class Prescription extends React.Component {
                 this.setState({
                     fileNames: response.data,
                 });
-                if (this.state.fileNames.isArray) {
+                if (typeof this.state.fileNames !== "string") {
                     let fileNames = this.state.fileNames;
                     let docFiles = [];
-                    if (fileNames.length !== 0) {
-                        fileNames.Files.forEach(function (item) {
-                            docFiles.push(PrescriptionApi.getFile(item.name))
-                        });
-                    }
+                    fileNames.Files.forEach(function (item) {
+                        docFiles.push(PrescriptionApi.getFile(item.name))
+                    });
                     this.setState({
                         files: docFiles,
                     });
+                    console.log(this.state.files)
                 }
-                else
-                    this.setState({
-                        fileNames: [],
-                    });
             }
             else {
                 console.log("Error get")
@@ -110,6 +105,7 @@ export default class Prescription extends React.Component {
     }
 
     fileUploadHandler() {
+        console.log("click upload");
         const fd = new FormData();
         console.log(this.state.selectedFile);
         fd.append("img", this.state.selectedFile);
