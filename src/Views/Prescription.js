@@ -20,6 +20,7 @@ export default class Prescription extends React.Component {
             fileZoomed: null,
             image: "",
             selectedFile: null,
+            displaySelected: false,
         };
         this.refreshFiles = (response) => {
             if (response != null) {
@@ -29,7 +30,7 @@ export default class Prescription extends React.Component {
                 if (this.state.fileNames != null) {
                     let fileNames = this.state.fileNames;
                     let docFiles = [];
-                    if (fileNames !== null) {
+                    if (fileNames !== undefined && fileNames.length !== 0) {
                         fileNames.Files.forEach(function (item) {
                             docFiles.push(PrescriptionApi.getFile(item.name))
                         });
@@ -84,7 +85,6 @@ export default class Prescription extends React.Component {
     }
 
     Display() {
-        console.log("CLICKED");
         document.getElementById("overlay").style.display = "block";
         return(
             <div
@@ -104,7 +104,8 @@ export default class Prescription extends React.Component {
 
     onChange(e) {
         this.setState({
-            selectedFile: e.target.files[0]
+            selectedFile: e.target.files[0],
+            displaySelected: true,
         })
     }
 
@@ -160,10 +161,18 @@ export default class Prescription extends React.Component {
                                 <Button size="lg" onClick={()=>this.fileUploadHandler()}>Confirm</Button>
                             </Col>
                         </div>
-
+                        {this.state.displaySelected && (
+                            <div>
+                                {this.state.selectedFile.name} is loaded, please confirm to upload.
+                            </div>
+                        )}
                     </div>
                     <br/>
                     <br/>
+                    {this.state.files.length === 0 && (
+                        <div style={{fontFamily:"trebuchet", fontSize:"2em",position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}>
+                            You have no prescription uploaded yet !</div>
+                    )}
                     <div className="container ">
                         <div className="row">
                             {items}
