@@ -6,7 +6,12 @@ export function displayNavBar() {
 
 	return (
 		<Navbar>
-			<Link to="/login">
+			<Link to={{
+  			pathname: '/login',
+  			state: {
+    			isLogin: true
+				}
+  		}}>
 			<input
 				type="submit"
 				value="LOGIN"
@@ -14,11 +19,11 @@ export function displayNavBar() {
 				className="navbarLink"/>
 			</Link>
 
-			<Link to="/register">
+			<Link to='/login'>
 			<input
 				type="submit"
 				value="REGISTER"
-				href="/register"
+				href="/login"
 				className="navbarLink"/>
 			</Link>
 
