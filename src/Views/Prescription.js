@@ -29,9 +29,11 @@ export default class Prescription extends React.Component {
                 if (this.state.fileNames != null) {
                     let fileNames = this.state.fileNames;
                     let docFiles = [];
-                    fileNames.Files.forEach(function (item) {
-                        docFiles.push(PrescriptionApi.getFile(item.name))
-                    });
+                    if (fileNames !== null) {
+                        fileNames.Files.forEach(function (item) {
+                            docFiles.push(PrescriptionApi.getFile(item.name))
+                        });
+                    }
                     this.setState({
                         files: docFiles,
                     });
@@ -40,7 +42,6 @@ export default class Prescription extends React.Component {
                     this.setState({
                         fileNames: [],
                     });
-
             }
             else {
                 console.log("Error get")
@@ -113,10 +114,9 @@ export default class Prescription extends React.Component {
         fd.append("img", this.state.selectedFile);
         axios.post(PrescriptionApi.upload(), fd).then(res => {
             console.log(res);
-        })
+        });
         window.location.reload();
     }
-
 
 
     render() {
