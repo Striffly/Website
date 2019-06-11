@@ -30,7 +30,7 @@ export default class Prescription extends React.Component {
                 if (this.state.fileNames != null) {
                     let fileNames = this.state.fileNames;
                     let docFiles = [];
-                    if (fileNames !== undefined && fileNames.length !== 0) {
+                    if (fileNames.length !== 0) {
                         fileNames.Files.forEach(function (item) {
                             docFiles.push(PrescriptionApi.getFile(item.name))
                         });
