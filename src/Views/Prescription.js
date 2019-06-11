@@ -27,7 +27,7 @@ export default class Prescription extends React.Component {
                 this.setState({
                     fileNames: response.data,
                 });
-                if (this.state.fileNames != null) {
+                if (this.state.fileNames.isArray) {
                     let fileNames = this.state.fileNames;
                     let docFiles = [];
                     if (fileNames.length !== 0) {
