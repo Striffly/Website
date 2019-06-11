@@ -17,7 +17,7 @@ function tryRegister() {
             alert("We've sent you a validation email");
         }
     });
-    return false;
+    // return false;
 }
 
 class Login extends Component {
