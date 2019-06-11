@@ -1,7 +1,7 @@
 import '../Public/Common.css'
 import '../Public/Login.css';
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import CareApi from '../Api/api';
 
