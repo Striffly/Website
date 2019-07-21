@@ -9,7 +9,7 @@ import {
  import AnchorLink from 'react-anchor-link-smooth-scroll';
  import { displayContactForm } from './ContactForm';
  import { displayPreviewSection } from "./PreviewSection";
- import "Parallax.scss";
+ import "./Parallax.scss";
 
 const descBoxes = [
 	{

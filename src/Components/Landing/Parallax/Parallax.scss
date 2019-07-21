@@ -47,7 +47,7 @@ $doctorOfficePicture : '../../../Images/doctor_office.jpg';
   width: 100%;
   color: #ffffff;
   background-color: #C4E7FC;
-  background-image: url(#{doctorOfficePicture});
+  background-image: url($doctorOfficePicture);
   background-size: cover;
   margin: 0;
   font-family: 'Barlow Semi Condensed', 'Roboto', sans-serif;
