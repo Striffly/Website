@@ -1,10 +1,5 @@
 import React from 'react';
 import {
-	Parallax,
-	MainPres,
-	Description,
-} from './Styles';
-import {
 	FaBell,
 	FaHeartbeat,
 	FaComments,
@@ -14,6 +9,7 @@ import {
  import AnchorLink from 'react-anchor-link-smooth-scroll';
  import { displayContactForm } from './ContactForm';
  import { displayPreviewSection } from "./PreviewSection";
+ import "Parallax.scss";
 
 const descBoxes = [
 	{
@@ -59,17 +55,17 @@ export function displayParallax() {
 
 	return (
 
-		<Parallax>
+		<div id={"Parallax"}>
 
-			<MainPres>
+			<div id={"MainPres"}>
 				<h1>EPICARE</h1>
 				<h3>Ma santé dans ma poche</h3>
 				<AnchorLink href='#ourVisionSection' className="knowMore">
 					En savoir plus
 				</AnchorLink>
-			</MainPres>
+			</div>
 
-			<span id='ourVisionSection'></span>
+			<span id='ourVisionSection'> </span>
 
 			<h3 className="sectionTitle">Notre vision</h3>
 
@@ -77,23 +73,23 @@ export function displayParallax() {
 			EpiCare est une application mobile ayant pour but de simplifier
 			et centraliser les échanges entre professionnels de la santé et patients.</p>
 
-			<Description>
+			<div id={"Description"}>
 				{descriptionBox(descBoxes[0].title, descBoxes[0].text, descBoxes[0].icon)}
 				{descriptionBox(descBoxes[1].title, descBoxes[1].text, descBoxes[1].icon)}
 				{descriptionBox(descBoxes[2].title, descBoxes[2].text, descBoxes[2].icon)}
 				{descriptionBox(descBoxes[3].title, descBoxes[3].text, descBoxes[3].icon)}
 				{descriptionBox(descBoxes[4].title, descBoxes[4].text, descBoxes[4].icon)}
-			</Description>
+			</div>
 
 			{displayPreviewSection()}
 
-			<span id='previewSection'></span>
+			<span id='previewSectionSpan'></span>
 
-			<span id='contactSection'></span>
+			<span id='contactSectionSpan'></span>
 
 			{displayContactForm()}
 
-		</Parallax>
+		</div>
 
 	);
 

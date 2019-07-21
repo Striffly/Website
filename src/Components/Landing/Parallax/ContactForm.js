@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-	ContactForm
-} from './Styles';
+import './ContactForm.scss';
 import nodemailer from "nodemailer";
 import {
 	FaEnvelope,
@@ -71,7 +69,7 @@ export function displayContactForm() {
 	let subject = "Objet"
 
 	return (
-		<ContactForm>
+		<div id={"ContactForm"}>
 			<h3 className="sectionTitle">Nous Contacter</h3>
 
 
@@ -117,7 +115,7 @@ export function displayContactForm() {
 				onClick={() => sendEmail(name, email, subject, message)}/>
 
 
-		</ContactForm>
+		</div>
 	);
 
 }
