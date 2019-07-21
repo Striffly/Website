@@ -1,7 +1,7 @@
-import '../Public/Chat.css'
+import './Chat.css'
 import React, { Component } from 'react';
-import ChatView from '../Components/Chat'
-import CareChat from '../Api/Chat';
+import ChatView from './Chat'
+import CareChat from './Api';
 
 export default class Chat extends Component {
     constructor() {

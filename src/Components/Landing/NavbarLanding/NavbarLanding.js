@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar } from './Styles';
 import { Link } from 'react-router-dom'
 
-export function displayNavBar() {
+export function navbarLanding() {
 
 	return (
 		<Navbar>

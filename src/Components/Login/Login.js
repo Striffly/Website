@@ -1,9 +1,9 @@
-import '../Public/Common.css'
-import '../Public/Login.css';
+import '../../Styles.scss'
+import './Login.css';
 import React, { Component } from 'react';
 import {  withRouter } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
-import CareApi from '../Api/api';
+import CareApi from '../Shared/Api/api';
 
 class Login extends Component {
     constructor(props) {

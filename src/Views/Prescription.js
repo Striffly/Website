@@ -1,14 +1,14 @@
 import React from "react";
-import Navbar from "../Components/Navbar";
-import PrescriptionApi from "../Api/Prescription";
-import CareApi from '../Api/api';
-import NotLogged from "../Components/NotLogged";
+import Navbar from "../Components/Shared/Navbar";
+import PrescriptionApi from "../Components/Shared/Api/Prescription";
+import CareApi from '../Components/Shared/Api/api';
+import NotLogged from "../Components/Shared/LogHandling/NotLogged";
 import { Figure, Button, Col } from "react-bootstrap";
 import ExifOrientationImg from 'react-exif-orientation-img'
 import axios from 'axios';
 
 import '../Public/Prescription.css';
-import '../Public/Common.css'
+import '../Styles.scss'
 
 export default class Prescription extends React.Component {
     constructor(props) {
