@@ -10,32 +10,9 @@
     <body style="
                 margin: 0;
                 background-color: #eaecf0;; z-index: -1">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/NavBar.css" />
-
-
-    <div class="header" id="nbar">
-        <div class="navbar-content">
-            <img src="%PUBLIC_URL%/favicon.ico" style="max-width: 50px;"></img>
-        </div>
-    </div>
-
-    <!-- This allows the navbar to stick whenever someone scrolls down -->
-    <script>
-        window.onscroll = function() {myFunction()};
-
-        var header = document.getElementById("nbar");
-        var sticky = header.offsetTop;
-
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-        }
-    </script>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/NavBar.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>

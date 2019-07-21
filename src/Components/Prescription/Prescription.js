@@ -1,4 +1,4 @@
-import CareApi from "./api"
+import CareApi from "../Shared/Api/api"
 
 export default class PrescriptionApi {
     static tryRequest(usedMethod, data, npath) {

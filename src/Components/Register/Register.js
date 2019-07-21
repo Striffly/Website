@@ -1,4 +1,4 @@
-import '../Styles.scss'
+import '../../Styles.scss'
 import React from 'react';
 import CareApi from '../Components/Shared/Api/api';
 import { Link } from 'react-router-dom';

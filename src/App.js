@@ -4,8 +4,8 @@ import Login from './Components/Login/Login';
 import LandingPage from './Components/Landing/LandingPage';
 // import Register from './Views/Register';
 import Chat from './Components/Chat/View';
-import Profile from './Views/Profile';
-import Prescription from './Views/Prescription';
+import Profile from './Components/Profile/Profile';
+import Prescription from './Components/Prescription/View';
 import Settings from './Components/Settings/Settings';
 
 class App extends Component {
