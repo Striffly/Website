@@ -1,4 +1,4 @@
-import './Settings.css';
+import './Settings.scss';
 import '../../Styles.scss';
 import EpicareCommon from '../Shared/LogHandling/common'
 import React, { Component } from 'react';

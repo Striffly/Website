@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import doctorOfficePicture from '../../Images/doctor_office.jpg';
-import doctorPicture from '../../Images/doctor.jpg';
+import doctorOfficePicture from '../../../Images/doctor_office.jpg';
+import doctorPicture from '../../../Images/doctor.jpg';
 
 
 export const Parallax = styled.div`

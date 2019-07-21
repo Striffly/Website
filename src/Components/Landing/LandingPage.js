@@ -1,7 +1,7 @@
 import React from 'react';
 import { navbarLanding } from './NavbarLanding/NavbarLanding';
-import { displayParallax } from '../Parallax/Parallax';
-import './Fonts.css';
+import { displayParallax } from './Parallax/Parallax';
+import './Fonts.scss';
 
 class LandingPage extends React.Component {
 

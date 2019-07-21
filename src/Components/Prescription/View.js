@@ -7,7 +7,7 @@ import { Figure, Button, Col } from "react-bootstrap";
 import ExifOrientationImg from 'react-exif-orientation-img'
 import axios from 'axios';
 
-import './Prescription.css';
+import './Prescription.scss';
 import '../../Styles.scss'
 
 export default class Prescription extends React.Component {

@@ -9,7 +9,7 @@ import CareApi from '../Shared/Api/api';
 import Navbar from '../Shared/Navbar';
 
 // Ajout du fichier css
-// import '../Public/Chat.css';
+// import '../Public/Chat.scss';
 
 
 export default class Login extends Component {

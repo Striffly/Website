@@ -1,6 +1,6 @@
 import React from 'react';
 import { PreviewSection } from './Styles';
-import appDemoGif from "../../Images/android_demo.gif";
+import appDemoGif from "../../../Images/android_demo.gif";
 
  export function displayPreviewSection() {
 
