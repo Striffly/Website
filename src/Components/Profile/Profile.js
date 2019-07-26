@@ -1,11 +1,10 @@
-import '../Public/Profile.css';
-import '../Public/Common.css';
-import EpicareCommon from '../common'
+import '../../Styles.scss';
+import EpicareCommon from '../Shared/LogHandling/common'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import CareApi from '../Api/api';
-import NotLogged from "../Components/NotLogged";
-import Navbar from "../Components/Navbar";
+import CareApi from '../Shared/Api/api';
+import NotLogged from "../Shared/LogHandling/NotLogged";
+import Navbar from "../Shared/Navbar";
 
 export default class Login extends Component {
     constructor(props) {

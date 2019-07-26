@@ -1,6 +1,6 @@
-import '../Public/Common.css'
+import '../../Styles.scss'
 import React from 'react';
-import CareApi from '../Api/api';
+import CareApi from '../Components/Shared/Api/api';
 import { Link } from 'react-router-dom';
 
 function tryRegister() {
@@ -15,7 +15,6 @@ function tryRegister() {
             alert("We've sent you a validation email");
         }
     });
-    return false;
 }
 
 export default class RegisterPage extends React.Component {
