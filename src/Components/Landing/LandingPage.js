@@ -1,7 +1,7 @@
 import React from 'react';
-import { displayNavBar } from '../Components/NavbarLanding/NavbarLanding';
-import { displayParallax } from '../Components/Parallax/Parallax';
-import '../Public/Fonts.css';
+import { navbarLanding } from './NavbarLanding/NavbarLanding';
+import { displayParallax } from './Parallax/Parallax';
+import './Fonts.scss';
 
 class LandingPage extends React.Component {
 
@@ -17,7 +17,7 @@ class LandingPage extends React.Component {
 
 		return (
 			<div>
-				{displayNavBar()}
+				{navbarLanding()}
 				{displayParallax()}
 			</div>
 		);

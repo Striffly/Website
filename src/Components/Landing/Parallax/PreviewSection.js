@@ -1,11 +1,11 @@
 import React from 'react';
-import { PreviewSection } from './Styles';
-import appDemoGif from "../../Images/android_demo.gif";
+import appDemoGif from "../../../Images/android_demo.gif";
+import "./PreviewSection.scss";
 
  export function displayPreviewSection() {
 
  	return (
-		<PreviewSection>
+		<div id={"PreviewSection"}>
 			<h3 className="sectionTitle">Aperçu</h3>
 			<p>Epicare, concrètement, à quoi ça ressemble ?</p>
 
@@ -28,6 +28,6 @@ import appDemoGif from "../../Images/android_demo.gif";
 					le même compte que sur l'application mobile.  </p></div>
 				</div>
 			</div>
-		</PreviewSection>
+		</div>
 	);
 }

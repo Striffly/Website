@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
-import Login from './Views/Login';
-import LandingPage from './Views/LandingPage';
+import Login from './Components/Login/Login';
+import LandingPage from './Components/Landing/LandingPage';
 // import Register from './Views/Register';
-import Chat from './Views/Chat';
-import Profile from './Views/Profile';
-import Prescription from './Views/Prescription';
-import Settings from './Views/Settings';
+import Chat from './Components/Chat/View';
+import Profile from './Components/Profile/Profile';
+import Prescription from './Components/Prescription/View';
+import Settings from './Components/Settings/Settings';
 
 class App extends Component {
     render() {

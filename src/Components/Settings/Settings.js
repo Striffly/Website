@@ -1,9 +1,9 @@
-import '../Public/Settings.css';
-import '../Public/Common.css';
-import EpicareCommon from '../common'
+import './Settings.scss';
+import '../../Styles.scss';
+import EpicareCommon from '../Shared/LogHandling/common'
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom'
-import CareApi from '../Api/api';
+import CareApi from '../Shared/Api/api';
 
 
 export default class Settings extends Component {

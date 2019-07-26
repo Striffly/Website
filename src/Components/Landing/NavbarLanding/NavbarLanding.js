@@ -1,11 +1,11 @@
 import React from 'react';
-import { Navbar } from './Styles';
+import './Styles.scss';
 import { Link } from 'react-router-dom'
 
-export function displayNavBar() {
+export function navbarLanding() {
 
 	return (
-		<Navbar>
+		<div id={"Navbar"}>
 			<Link to={{
   			pathname: '/login',
   			state: {
@@ -27,7 +27,7 @@ export function displayNavBar() {
 				className="navbarLink"/>
 			</Link>
 
-		</Navbar>
+		</div>
 	);
 
 }
