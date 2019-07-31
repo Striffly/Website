@@ -3,6 +3,8 @@ import {
   Map, TileLayer, withLeaflet, MapControl, ZoomControl,
 } from 'react-leaflet';
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
+
+import LocateControl from './Shared/LocateUser';
 // import PrintControlDefault from 'react-leaflet-easyprint';
 // import MarkerClusterGroup from 'react-leaflet-markercluster';
 // import yellowIcon from './MarkerStyle';
@@ -27,14 +29,8 @@ class Search extends MapControl {
 }
 
 const GeoSearch = withLeaflet(Search);
-type State = {
-  lat: number,
-  lng: number,
-  zoom: number,
-}
 
-// export default class SimpleExample extends Component<{}, State> {
-class LeafletMap extends Component<{}, State> {
+class LeafletMap extends Component {
 
   state = {
     lat: 46.5,
@@ -81,6 +77,7 @@ class LeafletMap extends Component<{}, State> {
         />
         <ZoomControl position="bottomleft" />
         <GeoSearch />
+        <LocateControl startDirectly/>
       </Map>
     );
   }
