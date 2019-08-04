@@ -11,20 +11,30 @@ export function navbarLanding() {
   			state: {
     			isLogin: true
 				}
-  		}}>
-			<input
-				type="submit"
-				value="LOGIN"
-				href="/login"
-				className="navbarLink"/>
+			}}>
+				<input
+					type="submit"
+					value="LOGIN"
+					href="/login"
+					className="navbarLink"
+				/>
 			</Link>
 
 			<Link to='/login'>
-			<input
-				type="submit"
-				value="REGISTER"
-				href="/login"
-				className="navbarLink"/>
+				<input
+					type="submit"
+					value="REGISTER"
+					href="/login"
+					className="navbarLink"
+				/>
+			</Link>
+			<Link to='/map'>
+				<input
+					type="submit"
+					value="CARTE"
+					href="/map"
+					className="navbarLink"
+				/>
 			</Link>
 
 		</div>
