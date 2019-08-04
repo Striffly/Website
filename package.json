@@ -8,6 +8,8 @@
     "eslint": "5.12.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-react": "^7.13.0",
+    "esri-leaflet": "^2.3.0",
+    "esri-leaflet-geocoder": "^2.2.14",
     "jest": "23.6.0",
     "jquery": "^3.4.1",
     "leaflet": "^1.5.1",
