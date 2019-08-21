@@ -1,6 +1,7 @@
+@import '../Fonts.scss';
 $doctorOfficePicture : '../../../Images/doctor_office.jpg';
 
-#Parallax {
+.Parallax {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

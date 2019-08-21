@@ -1,21 +1,21 @@
 import React from 'react';
 import appDemoGif from "../../../Images/android_demo.gif";
-import "./PreviewSection.scss";
+import classes from  "./PreviewSection.scss";
 
  export function displayPreviewSection() {
 
  	return (
-		<div id={"PreviewSection"}>
-			<h3 className="sectionTitle">Aperçu</h3>
+		<div className={classes.PreviewSection}>
+			<h3 className={classes.sectionTitle}>Aperçu</h3>
 			<p>Kwili, concrètement, à quoi ça ressemble ?</p>
 
-			<div className="previewContainer">
+			<div className={classes.previewContainer}>
 
-				<div className="previewPic">
+				<div className={classes.previewPic}>
 					<img src={appDemoGif} alt="Android Demo" />
 				</div>
 
-				<div className="previewText">
+				<div className={classes.previewText}>
 					<h4>Une app mobile</h4>
 					<div><p>Creéz un profil patient ou urgentiste.
 					Chattez en ligne directement avec l'urgentiste, accédez à notre carte des hôpitaux et bénificiez de notre itinéraire adapté. Le tout grâce à une seule

@@ -1,8 +1,10 @@
-import '../../Styles.scss'
+// import '../../Styles.scss'
 import React, { Component } from 'react';
 import {  withRouter } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import CareApi from '../Shared/Api/api';
+
+import classes from '../../Styles.scss';
 
 class Login extends Component {
     constructor(props) {
@@ -83,8 +85,8 @@ class Login extends Component {
         return (
           <div>
             {this.state.isLogin ? (
-              <div className="center-screen">
-                  <form className="box">
+              <div className={classes.centerScreen}>
+                  <form className={classes.box}>
                       <div className="form-group">
                           <input type="email" className="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Email" />
                           <small id="emailHelp" className="form-text text-muted">Si vous n'avez pas de compte, vous pouvez vous en créer un en cliquant sur Register</small>
@@ -92,8 +94,8 @@ class Login extends Component {
                       <div className="form-group">
                           <input type="password" className="form-control" id="password-input" placeholder="Password" />
                       </div>
-                      <button type="button" className="btn btn-block btn-success btn-space" onClick={this.tryLogin}>Login</button>
-                      <button className="btn btn-block btn-secondary btn-space" onClick={() => this.setState({ isLogin: false })}>Register</button>
+                      <button type="button" className={`btn btn-block btn-success ${classes.btnSpace}`} onClick={this.tryLogin}>Login</button>
+                      <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: false })}>Register</button>
                   </form>
                   <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Body>{this.errorMsg}</Modal.Body>
@@ -105,8 +107,8 @@ class Login extends Component {
                     </Modal>
               </div>
             ) : (
-              <div className="center-screen">
-                  <div className="box">
+              <div className={classes.centerScreen}>
+                  <div className={classes.box}>
                       <form>
                           <div className="form-group">
                               <label>First Name</label>
@@ -138,7 +140,7 @@ class Login extends Component {
                               <input type="name" className="form-control" id="type-input" placeholder="patient / doctor ?" />
                           </div>
                           <button type="button" className="btn btn-block btn-primary" onClick={this.tryRegister}>Register</button>
-                          <button className="btn btn-block btn-secondary btn-space" onClick={() => this.setState({ isLogin: true })}>Already registed ?</button>
+                          <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: true })}>Already registed ?</button>
                       </form>
                   </div>
                   <Modal show={this.state.show} onHide={this.handleClose}>

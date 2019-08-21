@@ -1,6 +1,7 @@
+@import '../Fonts.scss';
 $doctorPicture: "../../../Images/doctor.jpg";
 
-#ContactForm {
+.ContactForm {
   display: flex;
   box-sizing: border-box;
   flex-flow: column;
