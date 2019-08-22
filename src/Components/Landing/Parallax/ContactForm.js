@@ -76,7 +76,7 @@ export function displayContactForm() {
 			<form>
 				<div className={classes.userInfoSection}>
 					<div className={classes.formSection}>
-						<FaUser className="icon"/>
+						<FaUser className={classes.icon}/>
 						<input
 							type="text"
 							placeholder={name}
@@ -84,7 +84,7 @@ export function displayContactForm() {
 					</div>
 
 					<div className={classes.formSection}>
-						<FaEnvelope className="icon"/>
+						<FaEnvelope className={classes.icon}/>
 						<input
 							type="email"
 							placeholder={email}
@@ -92,7 +92,7 @@ export function displayContactForm() {
 					</div>
 
 					<div className={classes.formSection}>
-						<FaComment className="icon"/>
+						<FaComment className={classes.icon}/>
 						<input
 							type="text"
 							placeholder={subject}
