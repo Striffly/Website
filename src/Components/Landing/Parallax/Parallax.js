@@ -39,7 +39,7 @@ export function displayParallax() {
 
 		<div className={classes.Parallax}>
 
-			<div id={"MainPres"}>
+			<div className={classes.MainPres}>
 				<h1>KWILI</h1>
 				<h3>Ma santé dans ma poche</h3>
 				<AnchorLink href='#ourVisionSection' className={classes.knowMore}>
@@ -53,7 +53,7 @@ export function displayParallax() {
 
 			<p>Un moyen simple et rapide pour accéder aux urgences.</p>
 
-			<div id={"Description"}>
+			<div className={classes.Description}>
 				{descriptionBox(descBoxes[0].title, descBoxes[0].text, descBoxes[0].icon)}
 				{descriptionBox(descBoxes[1].title, descBoxes[1].text, descBoxes[1].icon)}
 			</div>

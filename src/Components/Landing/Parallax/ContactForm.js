@@ -69,7 +69,7 @@ export function displayContactForm() {
 	let subject = "Objet"
 
 	return (
-		<div className={classes.ContactForm}>
+		<div id={classes.ContactForm}>
 			<h3 className={classes.sectionTitle}>Nous Contacter</h3>
 
 
