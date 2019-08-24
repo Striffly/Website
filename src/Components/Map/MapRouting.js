@@ -2,7 +2,7 @@ import { MapLayer } from "react-leaflet";
 import L from "leaflet";
 import "leaflet-routing-machine";
 import { withLeaflet } from "react-leaflet";
-//import yellowIcon from './MarkerStyle';
+import './leafletRoutingMachine.scss';
 
 class MapRouting extends MapLayer {
 
@@ -18,6 +18,9 @@ class MapRouting extends MapLayer {
 
         let leafletElement = L.Routing.control({
             waypoints,
+            lineOptions: {
+                styles: [{ color: '#000', opacity: 0.5, weight: 4 }]
+            },
             plan: L.Routing.plan(waypoints, {
                 createMarker: function(i, wp) {
                     return L.marker(wp.latLng, {
