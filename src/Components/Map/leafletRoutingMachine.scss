@@ -4,6 +4,7 @@
   padding-top: 4px;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .leaflet-control-container .leaflet-routing-container-hide {

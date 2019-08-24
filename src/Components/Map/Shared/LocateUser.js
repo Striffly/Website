@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { withLeaflet } from 'react-leaflet';
 import Locate from 'leaflet.locatecontrol';
-import { Marker } from "react-leaflet";
+//import { Marker } from "react-leaflet";
 
 class LocateControl extends Component {
 
@@ -10,6 +10,7 @@ class LocateControl extends Component {
     const { map } = this.props.leaflet;
     const locateOptions = {
       position: 'topright',
+      enableHighAccuracy: true,
       strings: {
           title: 'Show me where I am, yo!'
       },
@@ -19,6 +20,10 @@ class LocateControl extends Component {
 
     const lc = new Locate(locateOptions);
     lc.addTo(map);
+
+    if (startDirectly) {
+      lc.start();
+    }
   }
 
   render() {

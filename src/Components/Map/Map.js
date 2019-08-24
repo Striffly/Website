@@ -76,13 +76,12 @@ class LeafletMap extends Component {
 
     render() {
 
-        const position = [this.state.lat, this.state.lng];
-        const testCamillePos = [48.8552485,2.4344011];
+        const defaultPosition = [this.state.lat, this.state.lng];
 
         return (
             <Map
                 zoomControl={false}
-                center={position}
+                center={defaultPosition}
                 zoom={this.state.zoom}
                 style={{ height: '100vh' }}
                 minZoom={2}

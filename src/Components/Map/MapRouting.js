@@ -10,22 +10,21 @@ class MapRouting extends MapLayer {
 
         const { map, routeFrom, routeTo} = this.props;
         const waypoints = [routeFrom, routeTo];
-        const icon = L.icon({
-            iconUrl:
-                "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png",
-            iconSize: [40, 40]
-        });
 
         let leafletElement = L.Routing.control({
             waypoints,
+            showAlternatives: true,
             lineOptions: {
-                styles: [{ color: '#000', opacity: 0.5, weight: 4 }]
+                styles: [{color: 'red', opacity: 0.5, weight: 4 }]
             },
+            altLineOptions: {
+                styles: [{color: '#000', opacity: 0.4, weight: 4}] },
+            addWaypoints: true,
+            draggableWaypoints: true,
             plan: L.Routing.plan(waypoints, {
                 createMarker: function(i, wp) {
                     return L.marker(wp.latLng, {
                         draggable: true,
-                        icon
                     });
                 },
                 routeWhileDragging: true
