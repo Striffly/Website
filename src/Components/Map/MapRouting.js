@@ -26,8 +26,9 @@ class MapRouting extends MapLayer {
                     });
                 },
                 routeWhileDragging: true
-            })
+            }),
         }).addTo(map.leafletElement);
+
         return leafletElement.getPlan();
     }
 }

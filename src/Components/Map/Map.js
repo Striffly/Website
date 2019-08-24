@@ -33,7 +33,11 @@ class LeafletMap extends Component {
         lat: 46.5,
         lng: 2.618787,
         zoom: 5,
-        isMapInit: false
+        isMapInit: false,
+        userPos: null,
+        //in case userPos != route start pos
+        routeFrom: [46.5, 2.618787],
+        routeTo: [48.85412, 2.4065929]
     };
 
     // print() {
@@ -57,10 +61,22 @@ class LeafletMap extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.map);
+        if (this.map.contextValue.layerContainer._lastCenter !== this.state.routeFrom)
+            this.setState({routeFrom: this.map.contextValue.layerContainer._lastCenter});
+        //console.log(this.refs.userLoc);
+    }
+
+    updateUserPosition(event) {
+        console.log("found location!");
+        console.log(event);
+        this.setState({userPos: event.latlng});
+    }
+
     render() {
 
         const position = [this.state.lat, this.state.lng];
-        const hospitalTestRouting = [48.85412, 2.4065929];
         const testCamillePos = [48.8552485,2.4344011];
 
         return (
@@ -71,7 +87,8 @@ class LeafletMap extends Component {
                 style={{ height: '100vh' }}
                 minZoom={2}
                 maxZoom={19}
-                ref={this.saveMap}>
+                ref={this.saveMap}
+                onLocationFound={event => {this.updateUserPosition(event)}}
                 >
 
                 <TileLayer
@@ -81,7 +98,14 @@ class LeafletMap extends Component {
                 <ZoomControl position="bottomleft" />
                 <GeoSearch />
                 <LocateControl startDirectly/>
-                {this.state.isMapInit && <MapRouting routeFrom={testCamillePos} routeTo={hospitalTestRouting} map={this.map}/>}
+
+                {
+                    //only display routing when user is geolocated
+                    this.state.isMapInit && this.state.userPos && <MapRouting
+                    routeFrom={this.state.userPos}
+                    routeTo={this.state.routeTo}
+                    map={this.map}/>
+                }
 
             </Map>
         );
