@@ -52,6 +52,7 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
 module.exports = {
+  performance: { hints: false },
   // Don't attempt to continue if there are any errors.
   bail: true,
   mode: 'production',
