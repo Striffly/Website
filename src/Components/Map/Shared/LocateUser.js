@@ -9,7 +9,7 @@ class LocateControl extends Component {
     const locateOptions = {
       position: 'topright',
       strings: {
-          title: 'Show me where I am, yo!'
+          title: 'Please locate me'
       },
       onActivate: () => {} // callback before engine starts retrieving locations
     }
