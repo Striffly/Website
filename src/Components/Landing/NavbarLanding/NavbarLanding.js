@@ -1,11 +1,11 @@
 import React from 'react';
-import './Styles.scss';
+import classes from './Styles.scss';
 import { Link } from 'react-router-dom'
 
 export function navbarLanding() {
 
 	return (
-		<div id={"Navbar"}>
+		<div className={classes.Navbar}>
 			<Link to={{
   			pathname: '/login',
   			state: {
@@ -16,7 +16,7 @@ export function navbarLanding() {
 					type="submit"
 					value="LOGIN"
 					href="/login"
-					className="navbarLink"
+					className={classes.navbarLink}
 				/>
 			</Link>
 
@@ -25,7 +25,7 @@ export function navbarLanding() {
 					type="submit"
 					value="REGISTER"
 					href="/login"
-					className="navbarLink"
+					className={classes.navbarLink}
 				/>
 			</Link>
 			<Link to='/map'>
@@ -33,7 +33,7 @@ export function navbarLanding() {
 					type="submit"
 					value="CARTE"
 					href="/map"
-					className="navbarLink"
+					className={classes.navbarLink}
 				/>
 			</Link>
 

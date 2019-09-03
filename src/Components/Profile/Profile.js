@@ -1,4 +1,4 @@
-import '../../Styles.scss';
+import classes from '../../Styles.scss';
 import EpicareCommon from '../Shared/LogHandling/common'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
@@ -41,8 +41,8 @@ export default class Login extends Component {
                     <hr className="my-4" />
                     <p>{this.state.user.type}</p>
                     <p className="lead">
-                        <Link className="btn btn-lg btn-warning btn-space" to="/profile/settings">Settings</Link>
-                        <Link className="btn btn-lg btn-outline-danger btn-space" to="/login" onClick={CareApi.logout}>Logout</Link>
+                        <Link className={`btn btn-lg btn-warning ${classes.btnSpace} to="/profile/settings`}>Settings</Link>
+                        <Link className={`btn btn-lg btn-outline-danger ${classes.btnSpace}`} to="/login" onClick={CareApi.logout}>Logout</Link>
                     </p>
                 </div>
             </div>

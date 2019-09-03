@@ -1,3 +1,4 @@
+@import '../Fonts.scss';
 $doctorPicture: "../../../Images/doctor.jpg";
 
 #ContactForm {
@@ -18,7 +19,11 @@ $doctorPicture: "../../../Images/doctor.jpg";
   text-align: center;
 
   .sectionTitle {
+    font-weight: lighter;
     color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 50px;
+    margin-top: 100px;
   }
 
   h4 {

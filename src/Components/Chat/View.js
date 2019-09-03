@@ -1,7 +1,8 @@
-import './Chat.scss'
 import React, { Component } from 'react';
 import ChatView from './Chat'
 import CareChat from './Api';
+
+// import './Chat.scss'
 
 export default class Chat extends Component {
     constructor() {

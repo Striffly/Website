@@ -1,5 +1,5 @@
 import React from 'react';
-import './ContactForm.scss';
+import classes from './ContactForm.scss';
 import nodemailer from "nodemailer";
 import {
 	FaEnvelope,
@@ -69,30 +69,30 @@ export function displayContactForm() {
 	let subject = "Objet"
 
 	return (
-		<div id={"ContactForm"}>
-			<h3 className="sectionTitle">Nous Contacter</h3>
+		<div id={classes.ContactForm}>
+			<h3 className={classes.sectionTitle}>Nous Contacter</h3>
 
 
 			<form>
-				<div className="userInfoSection">
-					<div className="formSection">
-						<FaUser className="icon"/>
+				<div className={classes.userInfoSection}>
+					<div className={classes.formSection}>
+						<FaUser className={classes.icon}/>
 						<input
 							type="text"
 							placeholder={name}
 							onChange={(event) => {name = event.target.value}}/>
 					</div>
 
-					<div className="formSection">
-						<FaEnvelope className="icon"/>
+					<div className={classes.formSection}>
+						<FaEnvelope className={classes.icon}/>
 						<input
 							type="email"
 							placeholder={email}
 							onChange={(event) => {email = event.target.value}}/>
 					</div>
 
-					<div className="formSection">
-						<FaComment className="icon"/>
+					<div className={classes.formSection}>
+						<FaComment className={classes.icon}/>
 						<input
 							type="text"
 							placeholder={subject}
@@ -102,7 +102,7 @@ export function displayContactForm() {
 
 				<textarea
 					placeholder={message}
-					className="message"
+					className={classes.message}
 					onChange={(event) => {message = event.target.value}}>
 				</textarea>
 
@@ -111,7 +111,7 @@ export function displayContactForm() {
 			<input
 				type="submit"
 				value="Envoyer"
-				className="submitButton"
+				className={classes.submitButton}
 				onClick={() => sendEmail(name, email, subject, message)}/>
 
 

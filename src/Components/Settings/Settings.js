@@ -1,5 +1,5 @@
-import './Settings.scss';
-import '../../Styles.scss';
+import settingsClasses from './Settings.scss';
+import stylesClasses from '../../Styles.scss';
 import EpicareCommon from '../Shared/LogHandling/common'
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom'
@@ -38,9 +38,9 @@ export default class Settings extends Component {
         if (!this.state.user)
             return EpicareCommon.loadingScreenPage();
         return (
-            <div className="center-screen">
-                <div className="box glob col-6 glob">
-                    <div className="input-borders col-11">
+            <div className={stylesClasses.centerScreen}>
+                <div className={`${stylesClasses.box} ${settingsClasses.glob} col-6 ${settingsClasses.glob}`}>
+                    <div className={`${settingsClasses.inputBorders} col-11`}>
                         <input type="text" className="form-control" id="name" placeholder="Name" value={this.state.user.name} onChange={this.handleChange} />
                         <input type="text" className="form-control" id="last_name" placeholder="Lastname" value={this.state.user.last_name} onChange={this.handleChange} />
                         <input type="text" className="form-control" id="email" placeholder="Email" value={this.state.user.email} onChange={this.handleChange} />

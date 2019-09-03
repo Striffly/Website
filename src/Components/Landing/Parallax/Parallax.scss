@@ -1,6 +1,7 @@
+@import '../Fonts.scss';
 $doctorOfficePicture : '../../../Images/doctor_office.jpg';
 
-#Parallax {
+.Parallax {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -38,7 +39,7 @@ $doctorOfficePicture : '../../../Images/doctor_office.jpg';
   }
 }
 
-#MainPres {
+.MainPres {
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -102,7 +103,7 @@ $doctorOfficePicture : '../../../Images/doctor_office.jpg';
   }
 }
 
-#Description {
+.Description {
   display: flex;
   box-sizing: border-box;
   flex-flow: row wrap;

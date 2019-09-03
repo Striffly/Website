@@ -7,8 +7,8 @@ import { Figure, Button, Col } from "react-bootstrap";
 import ExifOrientationImg from 'react-exif-orientation-img'
 import axios from 'axios';
 
-import './Prescription.scss';
-import '../../Styles.scss'
+import classes from './Prescription.scss';
+// import stylesClasses from '../../Styles.scss'
 
 export default class Prescription extends React.Component {
     constructor(props) {
@@ -136,7 +136,7 @@ export default class Prescription extends React.Component {
 
         return (
             <div>
-                <div id="overlay">
+                <div className={classes.overlay}>
                     {this.state.fileZoom && (
                         <div ref={node => { this.node = node; }}>
                             {this.Display()}
@@ -147,7 +147,7 @@ export default class Prescription extends React.Component {
                     <Navbar/>
                     <div className="container ">
                         <div className="row align-items-center">
-                            <div className="image-upload">
+                            <div className={classes.imageUpload}>
                                 <label htmlFor="file-input">
                                     <img src="http://www.pngall.com/wp-content/uploads/2/Upload-PNG.png" alt="upload"/>
                                 </label>

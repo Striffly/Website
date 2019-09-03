@@ -1,4 +1,4 @@
-import '../../Styles.scss'
+import classes from '../../Styles.scss'
 import React from 'react';
 import CareApi from '../Components/Shared/Api/api';
 import { Link } from 'react-router-dom';
@@ -20,8 +20,8 @@ function tryRegister() {
 export default class RegisterPage extends React.Component {
     render() {
         return (
-            <div className="center-screen">
-                <div className="box">
+            <div className={classes.centerScreen}>
+                <div className={classes.box}>
                     <form>
                         <div className="form-group">
                             <label>First Name</label>
@@ -45,7 +45,7 @@ export default class RegisterPage extends React.Component {
                             <input type="name" className="form-control" id="type-input" placeholder="patient / doctor ?" />
                         </div>
                         <button type="button" className="btn btn-block btn-primary" onClick={tryRegister}>Register</button>
-                        <Link to="/login" className="btn btn-block btn-secondary btn-space">Already registed ?</Link>
+                        <Link to="/login" className={`btn btn-block btn-secondary ${classes.btnSpace}`}>Already registed ?</Link>
                     </form>
                 </div>
             </div>
