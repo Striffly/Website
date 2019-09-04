@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /home/
 
-EXPOSE 80
+EXPOSE 8080
 
 WORKDIR Website
 
