@@ -1,2 +1,18 @@
-.chat-input {
-}
+.chatCard {
+        max-width: 540px;
+};
+
+.chatCardTitle {
+        color: darkslategray;
+        font-size: 150%;
+};
+
+.chatCardMsg {
+        color: darkgrey;
+        font-style: italic;
+};
+
+.chatImg {
+        padding-top: 5px;
+        padding-left: 20px;
+};

@@ -1,9 +1,9 @@
 import settingsClasses from './Settings.scss';
 import stylesClasses from '../../Styles.scss';
-import EpicareCommon from '../Shared/LogHandling/common'
+import KwiliCommon from '../Shared/LogHandling/common'
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom'
-import CareApi from '../Shared/Api/api';
+import KwiliApi from '../Shared/Api/api';
 
 
 export default class Settings extends Component {
@@ -29,14 +29,14 @@ export default class Settings extends Component {
         }
     }
     componentWillMount() {
-        if (CareApi.isConnected())
-            CareApi.getProfileInfo().then(this.refreshInfo);
+        if (KwiliApi.isConnected())
+            KwiliApi.getProfileInfo().then(this.refreshInfo);
     }
     render() {
-        if (CareApi.isConnected() === false)
-            return EpicareCommon.notLoggedPage();
+        if (KwiliApi.isConnected() === false)
+            return KwiliCommon.notLoggedPage();
         if (!this.state.user)
-            return EpicareCommon.loadingScreenPage();
+            return KwiliCommon.loadingScreenPage();
         return (
             <div className={stylesClasses.centerScreen}>
                 <div className={`${stylesClasses.box} ${settingsClasses.glob} col-6 ${settingsClasses.glob}`}>
