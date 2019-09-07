@@ -11,8 +11,8 @@ const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
 // const certPath = '/etc/letsencrypt/live/kwili.fr/cert.pem';
 // const keyPath = '/etc/letsencrypt/live/kwili.fr/privkey.pem';
-const certPath = './letsencrypt/live/kwili.fr/cert.pem';
-const keyPath = './letsencrypt/live/kwili.fr/privkey.pem';
+const certPath = './letsencrypt/live/www.epicare.fr/cert.pem';
+const keyPath = './letsencrypt/live/www.epicare.fr/privkey.pem';
 
 module.exports = function(proxy, allowedHost) {
   return {
