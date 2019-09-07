@@ -15,6 +15,7 @@ class Search extends MapControl {
       showMarker: true,
       searchLabel: 'Ex : pays, villes, CP...',
       // keepResult: false,
+      // retainZoomLevel: true,
       position: 'topleft',
       provider: new OpenStreetMapProvider(),
     });

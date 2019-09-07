@@ -62,6 +62,7 @@ class MapInfo extends MapControl {
         this.panelDiv = L.DomUtil.create("div", "info");
         this.panelDiv.innerHTML = '<div>Test</div>';
         return this.panelDiv;
+        // return (<DiscreteSlider />);
       }
     });
     return new MapInfo({ position: "bottomright" });
@@ -73,5 +74,5 @@ class MapInfo extends MapControl {
   }
 }
 
-export default DiscreteSlider;
-// export default withLeaflet(MapInfo);
+// export default DiscreteSlider;
+export default withLeaflet(MapInfo);

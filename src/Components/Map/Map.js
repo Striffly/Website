@@ -5,7 +5,7 @@ import {
 // import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 
 import LocateControl from './Shared/LocateUser';
-// import DiscreteSlider from './Shared/Slider';
+import DiscreteSlider from './Shared/Slider';
 import Search from './Shared/Search';
 // import PrintControlDefault from 'react-leaflet-easyprint';
 // import MarkerClusterGroup from 'react-leaflet-markercluster';
@@ -95,7 +95,12 @@ class LeafletMap extends Component {
             attribution='&amp;copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &amp;copy <a href="https://carto.com/attributions">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           />
-          <Marker position={[this.state.markerLat, this.state.markerLng]} />
+          {(this.state.markerLat !== 0 && this.state.markerLng !== 0) ?
+            (
+              <Marker position={[this.state.markerLat, this.state.markerLng]} />
+            ) : null
+          }
+          <DiscreteSlider />
           <ZoomControl position="bottomleft" />
           <Search addMarker={this.addMarker}/>
           <LocateControl startDirectly/>
