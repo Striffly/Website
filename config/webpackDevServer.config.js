@@ -9,8 +9,8 @@ const paths = require('./paths');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
-const certPath = '/etc/letsencrypt/live/www.kwili.fr/cert.pem';
-const keyPath = '/etc/letsencrypt/live/www.kwili.fr/privkey.pem';
+const certPath = './letsencrypt/live/www.kwili.fr/cert.pem';
+const keyPath = './letsencrypt/live/www.kwili.fr/privkey.pem';
 //const certPath = './letsencrypt/live/www.epicare.fr/cert.pem';
 //const keyPath = './letsencrypt/live/www.epicare.fr/privkey.pem';
 
