@@ -88,14 +88,14 @@ class Login extends Component {
               <div className={classes.centerScreen}>
                   <form className={classes.box}>
                       <div className="form-group">
-                          <input type="email" className="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Email" />
+                          <input type="email" className="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Courriel" />
                           <small id="emailHelp" className="form-text text-muted">Si vous n'avez pas de compte, vous pouvez vous en créer un en cliquant sur Register</small>
                       </div>
                       <div className="form-group">
-                          <input type="password" className="form-control" id="password-input" placeholder="Password" />
+                          <input type="password" className="form-control" id="password-input" placeholder="Mot de passe" />
                       </div>
-                      <button type="button" className={`btn btn-block btn-success ${classes.btnSpace}`} onClick={this.tryLogin}>Login</button>
-                      <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: false })}>Register</button>
+                      <button type="button" className={`btn btn-block btn-success ${classes.btnSpace}`} onClick={this.tryLogin}>Connexion</button>
+                      <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: false })}>Inscription</button>
                   </form>
                   <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Body>{this.errorMsg}</Modal.Body>
@@ -111,36 +111,36 @@ class Login extends Component {
                   <div className={classes.box}>
                       <form>
                           <div className="form-group">
-                              <label>First Name</label>
-                              <input type="name" className="form-control" id="name-input" placeholder="Enter first name" />
+                              <label>Prénom</label>
+                              <input type="name" className="form-control" id="name-input" placeholder="Indiquez votre prénom" />
                           </div>
                           <div className="form-group">
-                              <label>Last Name</label>
-                              <input type="name" className="form-control" id="last_name-input" placeholder="Enter last name" />
+                              <label>Nom de famille</label>
+                              <input type="name" className="form-control" id="last_name-input" placeholder="Indiquez votre nom de famille" />
                           </div>
                           <div className="form-group">
-                              <label>Birthdate</label>
+                              <label>Date de naissance</label>
                               <input type="date" id="date-input" min="1900-01-10" max="2019-06-12" />
                           </div>
                           <div className="form-group">
-                              <label>Email address</label>
-                              <input type="email" className="form-control" id="email-input" placeholder="Enter email" />
-                              <small className="form-text text-muted">We'll never share your email with anyone else.</small>
+                              <label>Courriel</label>
+                              <input type="email" className="form-control" id="email-input" placeholder="Indiquez votre courriel" />
+                              <small className="form-text text-muted">Votre courriel ne sera pas partagé avec des companies tierces.</small>
                           </div>
                           <div className="form-group">
-                              <label>Password</label>
-                              <input type="password" className="form-control" id="password-input" placeholder="Password" />
+                              <label>Mot de passe</label>
+                              <input type="password" className="form-control" id="password-input" placeholder="Mot de passe" />
                           </div>
                           <div className="form-group">
-                              <label>Password confirmation</label>
-                              <input type="password" className="form-control" id="password-input-confirmation" placeholder="Password" />
+                              <label>Confirmation du mot de passe</label>
+                              <input type="password" className="form-control" id="password-input-confirmation" placeholder="Confirmation du mot de passe" />
                           </div>
                           <div className="form-group">
-                              <label>Account type</label>
+                              <label>Type de compte</label>
                               <input type="name" className="form-control" id="type-input" placeholder="patient / doctor ?" />
                           </div>
-                          <button type="button" className="btn btn-block btn-primary" onClick={this.tryRegister}>Register</button>
-                          <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: true })}>Already registed ?</button>
+                          <button type="button" className="btn btn-block btn-primary" onClick={this.tryRegister}>Inscription</button>
+                          <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: true })}>Déjà inscrit ?</button>
                       </form>
                   </div>
                   <Modal show={this.state.show} onHide={this.handleClose}>

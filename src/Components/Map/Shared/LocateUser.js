@@ -8,10 +8,14 @@ class LocateControl extends Component {
     const { map } = this.props.leaflet;
     const locateOptions = {
       position: 'topright',
+      showPopup: false,
       strings: {
-          title: 'Please locate me'
+          title: 'Partager sa position'
       },
-      onActivate: () => {} // callback before engine starts retrieving locations
+      onActivate: () => {}, // callback before engine starts retrieving locations
+      // onLocationError: () => {
+      //   alert('Veuillez indiquer votre position');
+      // }
     }
 
     const lc = new Locate(locateOptions);
