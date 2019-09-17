@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const userdataToken = 'epicare-login-data';
+const userdataToken = 'Kwili-login-data';
 
-export default class CareApi  {
+export default class KwiliApi  {
     static async request(method, data, path) {
         const response = await axios({
             method: method,
@@ -16,7 +16,7 @@ export default class CareApi  {
     }
 
     static tryRequest(usedMethod, data, npath) {
-        return this.request(usedMethod, data, 'http://epicare.fr:8080/' + npath);
+        return this.request(usedMethod, data, 'http://api.kwili.fr:8080/' + npath);
     }
 
     static tryQuery(method, query, npath) {
