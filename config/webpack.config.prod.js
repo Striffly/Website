@@ -10,7 +10,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-// const UglifyJsPlugin = require("uglifyjs-3-webpack-plugin");
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
@@ -52,6 +52,9 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
 module.exports = {
+  optimization: {
+    minimize: true //Update this to true or false
+  },
   // Hide size warnings
   performance: { hints: false },
   // Don't attempt to continue if there are any errors.
@@ -156,7 +159,6 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-
               compact: true,
             },
           },
