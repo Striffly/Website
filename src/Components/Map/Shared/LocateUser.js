@@ -10,7 +10,7 @@ class LocateControl extends Component {
       position: 'topright',
       showPopup: false,
       strings: {
-          title: 'Partager sa position'
+          title: 'Partager ma position'
       },
       onActivate: () => {}, // callback before engine starts retrieving locations
       // onLocationError: () => {
