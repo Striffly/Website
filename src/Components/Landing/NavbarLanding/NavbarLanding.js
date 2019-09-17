@@ -14,7 +14,7 @@ export function navbarLanding() {
 			}}>
 				<input
 					type="submit"
-					value="LOGIN"
+					value="Connexion"
 					href="/login"
 					className={classes.navbarLink}
 				/>
@@ -23,7 +23,7 @@ export function navbarLanding() {
 			<Link to='/login'>
 				<input
 					type="submit"
-					value="REGISTER"
+					value="Inscription"
 					href="/login"
 					className={classes.navbarLink}
 				/>
@@ -31,7 +31,7 @@ export function navbarLanding() {
 			<Link to='/map'>
 				<input
 					type="submit"
-					value="CARTE"
+					value="Carte"
 					href="/map"
 					className={classes.navbarLink}
 				/>
