@@ -141,7 +141,7 @@ class Login extends Component {
                                         <input type="name" className="form-control" id="type-input" placeholder="patient / doctor ?" />
                                     </div>
                                     <button type="button" className="btn btn-block btn-primary" onClick={this.tryRegister}>S'inscrire</button>
-                                    <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: true })}>ADéjà inscrit ?</button>
+                                    <button className={`btn btn-block btn-secondary ${classes.btnSpace}`} onClick={() => this.setState({ isLogin: true })}>Déjà inscrit ?</button>
                                 </form>
                             </div>
                             <Modal show={this.state.show} onHide={this.handleClose}>
