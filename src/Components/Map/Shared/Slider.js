@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
@@ -7,10 +7,11 @@ function valuetext(value) {
 }
 
 function DiscreteSlider() {
+  const [radius, setRadius] = useState(10);
   return (
     <div style={{ width: '90vw', marginLeft: '5vw', marginTop: '4vh' }}>
       <Typography id="discrete-slider" gutterBottom>
-        Rayon de la recherche
+        {`Rayon de la recherche: ${radius}km`}
       </Typography>
       <Slider
         defaultValue={10}
@@ -19,8 +20,9 @@ function DiscreteSlider() {
         valueLabelDisplay="auto"
         step={10}
         marks
+        onChange={(e, val) => setRadius(val)}
         min={10}
-        max={110}
+        max={100}
       />
     </div>
   );
