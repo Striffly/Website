@@ -11,7 +11,7 @@ class MapRouting extends MapLayer {
     createLeafletElement() {
 
         const { map, routeFrom, routeTo} = this.props;
-        const waypoints = [routeFrom, routeTo];
+        let waypoints = [routeFrom, routeTo];
 
         let leafletElement = L.Routing.control({
             waypoints,
@@ -32,6 +32,12 @@ class MapRouting extends MapLayer {
                 routeWhileDragging: true
             }),
         }).addTo(map.leafletElement);
+
+        //if user chooses to enter an adress, use it as start position instead
+        map.leafletElement.on('geosearch/showlocation', function(event) {
+            let searchedPos = [Number(event.location.y), Number(event.location.x)];
+            console.log(searchedPos);
+        });
 
         return leafletElement.getPlan();
     }
