@@ -1,19 +1,36 @@
+import React, { Component } from 'react';
 import { MapLayer } from "react-leaflet";
 import L from "leaflet";
 import "leaflet-routing-machine";
 import { withLeaflet } from "react-leaflet";
-//import './leafletRoutingMachine.scss'; override css with custom css
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
+class MapRouting extends Component {
 
-class MapRouting extends MapLayer {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showConfirmStartPos : false,
+            start : props.routeFrom,
+            end : props.routeTo,
+            searchedPos : null,
+            routing : this.createRoutingElement()
+        };
+        this.setShowStartPosConfirmationModal = this.setShowStartPosConfirmationModal.bind(this)
+    }
 
-    createLeafletElement() {
+    //we are adding this leaflet routing element to the state so we can update it
+    createRoutingElement() {
 
-        const { map, routeFrom, routeTo} = this.props;
+        const { routeFrom, routeTo} = this.props;
+        const { map } = this.props.leaflet;
         let waypoints = [routeFrom, routeTo];
+        let self = this;
 
-        let leafletElement = L.Routing.control({
+        //create leaflet routing control element and add it to the map
+        let routingControl = L.Routing.control({
             waypoints,
             showAlternatives: true,
             lineOptions: {
@@ -31,15 +48,63 @@ class MapRouting extends MapLayer {
                 },
                 routeWhileDragging: true
             }),
-        }).addTo(map.leafletElement);
+        });
+        routingControl.addTo(map);
 
-        //if user chooses to enter an adress, use it as start position instead
-        map.leafletElement.on('geosearch/showlocation', function(event) {
+        // if user enters an address, ask if they want if they want to use it itinerary start
+        map.on('geosearch/showlocation', function(event) {
             let searchedPos = [Number(event.location.y), Number(event.location.x)];
-            console.log(searchedPos);
+            self.setShowStartPosConfirmationModal(true, searchedPos);
         });
 
-        return leafletElement.getPlan();
+        return routingControl.getPlan();
     }
+
+    //shows a modal window thath asks if user wants to use this address as start position
+    setShowStartPosConfirmationModal(show, pos) {
+        this.setState({showConfirmStartPos: show});
+        this.setState({searchedPos: pos});
+    }
+
+    //update start position with user-given address
+    updateStartPosCloseModal() {
+        let wayPoints = [this.state.searchedPos, this.state.end];
+        this.state.routing.setWaypoints(wayPoints);
+        this.setState({showConfirmStartPos: false})
+    }
+
+    displayConfirmationModal() {
+        return (
+            <Modal
+                show={this.state.showConfirmStartPos}
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Utiliser comme point de départ ?
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                        Voulez-vous utiliser cette adresse comme point de départ de l'ititinéraire jusqu'à l'hôpital ?
+                    </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={() => this.setState({showConfirmStartPos: false})} variant="secondary">Non</Button>
+                    <Button onClick={() => this.updateStartPosCloseModal()} variant="primary">Oui</Button>
+                </Modal.Footer>
+            </Modal>
+        );
+    };
+
+    render() {
+        return (
+            <React.Fragment>
+            {this.displayConfirmationModal()}
+            </React.Fragment>
+        );
+    }
+
 }
 export default withLeaflet(MapRouting);
