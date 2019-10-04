@@ -1,11 +1,13 @@
 import React from 'react';
-import classes from './ContactForm.scss';
 import nodemailer from "nodemailer";
 import {
 	FaEnvelope,
 	FaUser,
 	FaComment,
  } from "react-icons/fa";
+
+import classes from './ContactForm.scss';
+import doctorPicture from "../../../Images/doctor.jpg";
 
 function isEmailValid(name, email, message) {
 
@@ -69,10 +71,8 @@ export function displayContactForm() {
 	let subject = "Objet"
 
 	return (
-		<div id={classes.ContactForm}>
+		<div id={classes.ContactForm} style={{ backgroundImage: `url(${doctorPicture})` }}>
 			<h3 className={classes.sectionTitle}>Nous Contacter</h3>
-
-
 			<form>
 				<div className={classes.userInfoSection}>
 					<div className={classes.formSection}>
@@ -113,9 +113,6 @@ export function displayContactForm() {
 				value="Envoyer"
 				className={classes.submitButton}
 				onClick={() => sendEmail(name, email, subject, message)}/>
-
-
 		</div>
 	);
-
 }
