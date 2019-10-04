@@ -1,5 +1,4 @@
 @import '../Fonts.scss';
-$doctorPicture: "../../../Images/doctor.jpg";
 
 #ContactForm {
   display: flex;
@@ -15,7 +14,6 @@ $doctorPicture: "../../../Images/doctor.jpg";
   margin: 0px;
   font-family: sans-serif;
   background-color: #414445;
-  background-image: url($doctorPicture);
   text-align: center;
 
   .sectionTitle {
