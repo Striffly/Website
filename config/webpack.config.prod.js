@@ -89,8 +89,8 @@ module.exports = {
     // if there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
     modules: ['node_modules', paths.appNodeModules].concat(
-      // It is guaranteed to exist because we tweak it in `env.js`
-      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
+        // It is guaranteed to exist because we tweak it in `env.js`
+        process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
     // These are the reasonable defaults supported by the Node ecosystem.
     // We also include JSX as a common component filename extension to support
@@ -100,10 +100,15 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-
+      '_variables.sass': path.resolve(__dirname, 'relative/path/to/your/file/from/webpack/config/file'),
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      './images/layers.png$': path.resolve(__dirname, '../node_modules/leaflet/dist/images/layers.png'),
+      './images/layers-2x.png$': path.resolve(__dirname, '../node_modules/leaflet/dist/images/layers-2x.png'),
+      './images/marker-icon.png$': path.resolve(__dirname, '../node_modules/leaflet/dist/images/marker-icon.png'),
+      './images/marker-icon-2x.png$': path.resolve(__dirname, '../node_modules/leaflet/dist/images/marker-icon-2x.png'),
+      './images/marker-shadow.png$': path.resolve(__dirname, '../node_modules/leaflet/dist/images/marker-shadow.png')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -175,7 +180,22 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
+            test: /\leaflet.css$/,
+            use: [
+              {loader: "style-loader"},
+              {loader: "css-loader"}
+            ]
+          },
+          {
+            test: /\leaflet-routing-machine.css$/,
+            use: [
+              {loader: "style-loader"},
+              {loader: "css-loader"}
+            ]
+          },
+          {
             test: /\.(css|scss|sass)$/,
+            exclude: /(leaflet.css|leaflet-routing-machine.css)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
