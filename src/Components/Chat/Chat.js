@@ -1,136 +1,121 @@
-// import '../Public/Profile.css';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Container, Row, Col, FormControl,
-} from 'react-bootstrap';
-import { ChatFeed, Message } from 'react-chat-ui';
-import CareApi from '../Shared/Api/api';
-import Navbar from '../Shared/Navbar';
-
-// Ajout du fichier css
-// import '../Public/Chat.scss';
-
+import KwiliApi from '../Shared/Api/api';
+import NotLogged from '../Shared/LogHandling/NotLogged';
+import KwiliCommon from '../Shared/LogHandling/common';
+import classes from '../Chat/Chat.scss';
 
 export default class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [
-        new Message({ id: 1, message: "Bienvenue sur la plateforme Epicare ! Que pouvons-nous faire pour vous aujourd'hui ?", senderName: 'Epicare Bot' }),
-      ],
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.sendMessage = this.sendMessage.bind(this);
-    this.refreshInfo = (response) => {
-      if (response != null) {
-        console.log(response.data.user);
-        this.setState({
-          user: response.data.user,
-        });
-      }
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			user: null,
+		};
+		this.refreshInfo = (response) => {
+			if (response != null) {
+				this.setState({
+					user: response.data.user,
+				});
+			}
+		};
+	}
 
-  componentWillMount() {
-    CareApi.getProfileInfo().then(this.refreshInfo);
-  }
+	componentWillMount() {
+		if (KwiliApi.isConnected())
+			KwiliApi.getProfileInfo().then(this.refreshInfo);
+	}
 
-  notLoggedPage() {
-    return (
-          <div className="center-screen">
-              <h1>You must be connected to access this page</h1>
-                <Link to="/login" className="btn btn-warning btn-space">Login</Link>
-            </div>
-        );
-    }
-    loadingScreenPage() {
-        return (
-            <div className="center-screen">
-                <h1>Loading ...</h1>
-            </div>
-        );
-    }
+	handleChange(e) {
+		this.setState({ input: e.target.value });
+	}
 
-  handleChange(e) {
-    this.setState({ input: e.target.value });
-  }
+	cardItem(img, name, msg, updated, msgs) {
+		return (
+			<div className="row">
+				<div className="card col-3">
+					<div className="card-header row btn-link" id={`${name}Card`} data-toggle="collapse" data-target={`#collapse${name}`} aria-expanded="false" aria-controls={`collapse${name}`}>
+						<img src={img} className={`card-img ${classes.chatImg}`} alt={name} />
+						<div className="btn btn-link" data-toggle="collapse" data-target={`#collapse${name}`} aria-expanded="false" aria-controls={`collapse${name}`}>
+							<h6 className={`card-title ${classes.chatCardTitle}`}>{name}</h6>
+							<p className={`card-text ${classes.chatCardMsg}`}>"{msg}"</p>
+							<p className={`card-text`}>
+								<small className="text-muted">{updated}</small>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div id={`collapse${name}`} className={`collapse col-6 ${classes.chatBox}`} aria-labelledby={`${name}Card`} data-parent="#chatCards">
+					<div className="card-body mx-sm-3 md-2">
+						vous: on mange quand ? (3 minutes ago)
+						<br></br>
+						je test
+						<br></br>
+						je test
+						<br></br>
+						je test
+						<br></br>
+						je test
+						<br></br>
+						je test
+						<br></br>
+					</div>
+					<form className="card-body form-inline">
+						<div className="form-group mx-sm-3 md-2">
+							<input type="text" className="form-control" id={`MessageInput${name}`} placeholder="Écriver un message ..." />
+						</div>
+					</form>
+				</div>
+			</div>
+		)
+	}
 
-  sendMessage() {
-    const messages = this.state.messages;
-    if ((typeof this.state.input !== 'undefined') && (this.state.input !== '')) {
-      messages.push(new Message({ id: 0, message: this.state.input }));
-      if (this.state.input.includes('chat')) {
-        messages.push(new Message({ id: 1, message: 'Le chat a pour objectif de vous mettre directement en relation avec votre pharmacien ou votre médecin traitant.', senderName: 'Epicare Bot' }));
-        messages.push(new Message({ id: 1, message: "N'hésitez pas à me poser d'autres questions !", senderName: 'Epicare Bot' }));
-      } else if (this.state.input.includes('ordonnances')) {
-        messages.push(new Message({ id: 1, message: 'Vous pourrez consulter vos ordonnances directement depuis notre application et notre site web. Cliquez sur le boutton "Prescription" en haut de cette page pour plus de détails.', senderName: 'Epicare Bot' }));
-        messages.push(new Message({ id: 1, message: "N'hésitez pas à me poser d'autres questions !", senderName: 'Epicare Bot' }));
-      } else {
-        messages.push(new Message({ id: 1, message: "Désolé, je n'ai pas compris votre question :'(", senderName: 'Epicare Bot' }));
-        messages.push(new Message({ id: 1, message: "Essayez avec l'un des mots suivants : chat, ordonnances.", senderName: 'Epicare Bot' }));
-      }
-    }
-    this.setState({ input: '' });
-  }
+	loadChats(datas) {
+		var arr = datas.map(item => this.cardItem(item.img, item.name, item.msg, item.updated));
+		return arr;
+	}
 
-  render() {
-    if (!CareApi.isConnected()) {
-      return this.notLoggedPage();
-    }
-    if (!this.state.user) {
-      return this.loadingScreenPage();
-    }
-    const displayName = `${this.state.user.last_name} ${this.state.user.name}`;
-    return (
-      <div>
-        <Navbar />
-        {
-        // <div className="jumbotron">
-        //   <h1 className="display-4">{this.state.user.name}</h1>
-        //   <p className="lead">{this.state.user.last_name}</p>
-        //   <p className="lead">{this.state.user.email}</p>
-        // </div>
-      }
-        <Container>
-          <Row style={{ border: '1px solid', backgroundColor: '#6bc0ae' }}>
-            <Col sm={1} style={{ paddingTop: '25px', paddingBottom: '25px' }}>
-              <img alt="avatar" style={{ width: '100%', height: 'auto', backgroundColor: 'white' }} src={`${process.env.PUBLIC_URL}/user_default_avatar.png`} />
-            </Col>
-            <Col sm={2} style={{ paddingTop: '30px', paddingBottom: '25px' }}>{displayName}</Col>
-          </Row>
-          <Row style={{ borderLeft: '1px solid', borderRight: '1px solid', height: '70vh', overflowY: 'scroll', backgroundColor: 'white' }}>
-            <Col>
-              <ChatFeed
-                messages={this.state.messages} // Boolean: list of message objects
-                isTyping={this.state.is_typing} // Boolean: is the recipient typing
-                hasInputField={false} // Boolean: use our input, or use your own
-                showSenderName // show the name of the user who sent the message
-                bubblesCentered={false} // Boolean should the bubbles be centered in the feed?
-                // JSON: Custom bubble styles
-                style={{ color: '#000000' }}
-                bubbleStyles={
-                  {
-                    chatbubble: {
-                      backgroundColor: '#00C800',
-                    },
-                  }
-                }
-              />
-            </Col>
-          </Row>
-          <Row style={{ border: '1px solid', height: '8vh', backgroundColor: '#6bc0ae' }}>
-            <Col sm={11}>
-              <FormControl style={{ height: '6vh', resize: 'none', borderRadius: '25px', marginTop: '1vh' }} value={this.state.input} as="textarea" aria-label="With textarea" placeholder="Envoyer un message" onChange={this.handleChange} />
-            </Col>
-            <Col sm={1}>
-              <button type="button" style={{ borderRadius: '25px', marginTop: '2vh' }} onClick={this.sendMessage}>
-                <i className="far fa-2x fa-paper-plane" />
-              </button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
+	render() {
+		//     if (!KwiliApi.isConnected())
+		//         return <NotLogged/>;
+		//         if (KwiliApi.isConnected() === false)
+		//         return KwiliCommon.notLoggedPage();
+		//     if (!this.state.user)
+		//         return KwiliCommon.loadingScreenPage();
+		var datas = [
+			{
+				img: "https://scontent-gmp1-1.xx.fbcdn.net/v/t1.0-1/c336.233.182.182a/s50x50/17990928_1293295337374153_6142262363840219098_n.jpg?_nc_cat=110&_nc_oc=AQk4yy9M65uwDj80JGXl6WMcmIG88Lm42YDrSUQxwM98J-pD6VHJjUEqjdHJKozGrsI&_nc_ht=scontent-gmp1-1.xx&oh=202cad3abf1a745aa78b86c7aba4a16e&oe=5DFA644B",
+				name: "Ludwig",
+				msg: "vous: On va manger ?",
+				updated: "3 minutes ago",
+				histo: [{
+					date: "hier",
+					name: "Ludwig",
+					msg: "Demain on va manger oû ?"
+				},
+				{
+					date: "10h36",
+					name: "vous",
+					msg: "CAU burger ?"
+				},
+				{
+					date: "11h57",
+					name: "vous",
+					msg: "On va manger ?"
+				},
+				],
+			},
+			{
+				img: "https://scontent-gmp1-1.xx.fbcdn.net/v/t1.0-1/p50x50/32266385_1979705905580206_652268668834545664_n.jpg?_nc_cat=106&_nc_eui2=AeEmTPM-C2h04XH_BIHhxIWojlGFYjdAF08xjMi4xY6EH33-9UCRwYox99raWmV-9M-VFNe10EJUHzbosGbK5_jXIL_F-PXwhDAIGvv_-l3kIg&_nc_oc=AQkIqxtbHKdrPWV-VKEQ034XxEcY-U7UVHGkcPfS_ecu53OCdgiatacRhP03CnOvXmw&_nc_ht=scontent-gmp1-1.xx&oh=4b17e82fd654a67d437fe5b0fe5e89c6&oe=5DFF8B66",
+				name: "Anatole",
+				msg: "Anatole: T'es oû ?",
+				updated: "4 hours ago",
+			},
+		];
+		return (
+			<div>
+				<div className={`accordion ${classes.chat}`} id="chatCards">
+					{this.loadChats(datas)}
+				</div>
+			</div>
+		);
+	}
 }

@@ -34,7 +34,7 @@ function  sendEmail(name, email, subject, message) {
 
 	let mailOptions = {
 		from: email,
-		to: 'epicare.epitech@gmail.com',
+		to: 'Kwili.epitech@gmail.com',
 		subject: `${subject}`,
 		html: `<p>${name}</p>
 				<p>${email}</p>
@@ -45,7 +45,7 @@ function  sendEmail(name, email, subject, message) {
 		service: 'Gmail',
 		port: 465,
 		auth: {
-			user: 'epicare.epitech@gmail.com', //replace ! ne pas git
+			user: 'Kwili.epitech@gmail.com', //replace ! ne pas git
 			pass: '[PASSWORD]' // replace ! ne pas git
 		}
 	});

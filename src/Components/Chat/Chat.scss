@@ -1,2 +1,33 @@
-.chat-input {
+.chat {
+    padding-top: 0px;
 }
+
+.chatCardTitle {
+    color: darkslategray;
+    font-size: 150%;
+};
+
+.chatCardMsg {
+    color: darkgrey;
+    font-style: italic;
+};
+
+.chatImg {
+    padding-left: 10px;
+    display: block;
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+};
+
+.chatBox {
+	background-color: lightgrey;
+	position: absolute;
+};
+
+.chatText {
+
+};

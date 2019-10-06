@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 
 export default class CareChat {
   constructor(token, onMessageCallback) {
-    this.address = 'http://epicare.fr:8081/';
+    this.address = 'http://Kwili.fr:8081/';
     this.token = token;
     this.is_connected = false;
     this.socket = io.connect(this.address, { query: this.token, transports: ['websocket'] });

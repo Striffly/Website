@@ -1,6 +1,6 @@
 import classes from '../../Styles.scss'
 import React from 'react';
-import CareApi from '../Components/Shared/Api/api';
+import KwiliApi from '../Components/Shared/Api/api';
 import { Link } from 'react-router-dom';
 
 function tryRegister() {
@@ -9,7 +9,7 @@ function tryRegister() {
     const email = document.getElementById('email-input').value;
     const password = document.getElementById('password-input').value;
     const type = document.getElementById('type-input').value;
-    var promise = CareApi.register(name, last_name, email, password, type);
+    var promise = KwiliApi.register(name, last_name, email, password, type);
     promise.then(function(response) {
         if (response != null && response.status === 200) {
             alert("We've sent you a validation email");

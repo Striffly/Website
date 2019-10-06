@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../Shared/Navbar";
 import PrescriptionApi from "./Prescription";
-import CareApi from '../Shared/Api/api';
+import KwiliApi from '../Shared/Api/api';
 import NotLogged from "../Shared/LogHandling/NotLogged";
 import { Figure, Button, Col } from "react-bootstrap";
 import ExifOrientationImg from 'react-exif-orientation-img'
@@ -48,7 +48,7 @@ export default class Prescription extends React.Component {
         this.handleOutsideClick = this.handleOutsideClick.bind(this);
     }
     componentDidMount() {
-        if (CareApi.isConnected()) {
+        if (KwiliApi.isConnected()) {
             PrescriptionApi.getFileNames().then(this.refreshFiles);
         }
     }
@@ -117,7 +117,7 @@ export default class Prescription extends React.Component {
 
 
     render() {
-        if (!CareApi.isConnected())
+        if (!KwiliApi.isConnected())
             return (<NotLogged/>);
         const items = [];
         for (const [index, value] of this.state.files.entries()) {
