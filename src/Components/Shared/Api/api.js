@@ -16,11 +16,7 @@ export default class KwiliApi  {
     }
 
     static tryRequest(usedMethod, data, npath) {
-<<<<<<< HEAD
         return this.request(usedMethod, data, 'https://kwili.fr:8080/' + npath);
-=======
-        return this.request(usedMethod, data, 'http://api.kwili.fr/' + npath);
->>>>>>> 8b685a898ed8ec0bc0d6540aabc936ae3089d657
     }
 
     static tryQuery(method, query, npath) {
