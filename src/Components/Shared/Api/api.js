@@ -97,9 +97,7 @@ export default class KwiliApi {
 
 	static isConnected() {
 		var item = sessionStorage.getItem(userdataToken);
-		if (item === "undefined" || item == null || item.length === 0)
-			return false;
-		return true;
+		return (item === "undefined" || item == null || item.length === 0);
 	}
 
 	static getSessionToken() {
