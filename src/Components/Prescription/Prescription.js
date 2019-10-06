@@ -1,8 +1,8 @@
-import CareApi from "../Shared/Api/api"
+import KwiliApi from "../Shared/Api/api"
 
 export default class PrescriptionApi {
     static tryRequest(usedMethod, data, npath) {
-        return CareApi.request(usedMethod, data, 'http://epicare.fr:8082/' + npath);
+        return KwiliApi.request(usedMethod, data, 'http://Kwili.fr:8082/' + npath);
     }
 
     static tryQuery(method, query, npath) {
@@ -16,7 +16,7 @@ export default class PrescriptionApi {
     }
 
     static getFileNames() {
-        let token = CareApi.getSessionToken();
+        let token = KwiliApi.getSessionToken();
         if (token == null)
             token = "";
         const query = {
@@ -26,16 +26,16 @@ export default class PrescriptionApi {
     }
 
     static getFile(fileName) {
-        let token = CareApi.getSessionToken();
+        let token = KwiliApi.getSessionToken();
         if (token == null)
             token = "";
-        return ("http://epicare.fr:8082/download/" + fileName + "?token=" + token)
+        return ("http://Kwili.fr:8082/download/" + fileName + "?token=" + token)
     }
 
     static upload() {
-        let token = CareApi.getSessionToken();
+        let token = KwiliApi.getSessionToken();
         if (token == null)
             token = "";
-        return ("http://epicare.fr:8082/upload?token=" + token)
+        return ("http://Kwili.fr:8082/upload?token=" + token)
     }
 }
