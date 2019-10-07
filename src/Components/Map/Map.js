@@ -13,8 +13,9 @@ class LeafletMap extends Component {
         super(props);
         this.mapRef = React.createRef();
         this.state = {
-            lat: 46.5,
-            lng: 2.618787,
+            //default lat and lng are Paris coordinates
+            lat: 48.8566,
+            lng: 2.3522,
             markerLat: 0,
             markerLng: 0,
             zoom: 5,
@@ -45,7 +46,6 @@ class LeafletMap extends Component {
         this.setState({userPos: event.latlng});
     }
 
-
     addMarker(x, y) {
         this.setState({ markerLat: x, markerLng: y });
     }
@@ -72,6 +72,7 @@ class LeafletMap extends Component {
                     max Zoom={19}
                     ref={this.saveMap}
                     onLocationFound={event => {this.updateUserPosition(event)}}
+                    onLocationError={() => this.setState({userPos: position})}
                 >
                     <TileLayer
                         attribution='&amp;copy <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &amp;copy <a href="https://carto.com/attributions">CARTO</a>'
@@ -87,6 +88,7 @@ class LeafletMap extends Component {
                     <LocateControl startDirectly/>
                     {
                         //only display routing when user is geolocated
+                        //or use default coordinates if user refused geolocation
                         this.state.isMapInit && this.state.userPos && <MapRouting
                             routeFrom={this.state.userPos}
                             routeTo={this.state.routeTo}
