@@ -12,12 +12,14 @@ class MapRouting extends Component {
         super(props);
         this.state = {
             showConfirmStartPos : false,
+            showNoRouteFound : false,
             start : props.routeFrom,
             end : props.routeTo,
             searchedPos : null,
             routing : this.createRoutingElement()
         };
         this.setShowStartPosConfirmationModal = this.setShowStartPosConfirmationModal.bind(this)
+        this.setRoutingError = this.setRoutingError.bind(this)
     }
 
     //we are adding this leaflet routing element to the state so we can update it
@@ -50,13 +52,23 @@ class MapRouting extends Component {
         });
         routingControl.addTo(map);
 
-        // if user enters an address, ask if they want if they want to use it itinerary start
+        //If user enters an address, ask if they want if they want to use it itinerary start
         map.on('geosearch/showlocation', function(event) {
             let searchedPos = [Number(event.location.y), Number(event.location.x)];
             self.setShowStartPosConfirmationModal(true, searchedPos);
         });
 
+        //If no itinerary is found, set routing error and display error message
+        routingControl.on('routingerror', function() {
+            self.setRoutingError(true);
+        });
+
         return routingControl.getPlan();
+    }
+
+    //sets the routing error in the state
+    setRoutingError(value) {
+        this.setState({showNoRouteFound: value});
     }
 
     //shows a modal window thath asks if user wants to use this address as start position
@@ -97,10 +109,35 @@ class MapRouting extends Component {
         );
     };
 
+    displayNoRouteFoundModal() {
+        return (
+            <Modal
+                show={this.state.showNoRouteFound}
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Pas d'itinéraire trouvé
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                        Aucun itinéraire n'a été trouvé entre l'hôpital et ce point de départ. Veuillez utiliser une autre adresse.
+                    </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={(() => this.setState({showNoRouteFound: false}))} variant="primary">OK</Button>
+                </Modal.Footer>
+            </Modal>
+        );
+    };
+
     render() {
         return (
             <React.Fragment>
             {this.displayConfirmationModal()}
+            {this.displayNoRouteFoundModal()}
             </React.Fragment>
         );
     }
