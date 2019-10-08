@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import KwiliApi from '../Shared/Api/api';
-import NotLogged from '../Shared/LogHandling/NotLogged';
-import KwiliCommon from '../Shared/LogHandling/common';
+// import NotLogged from '../Shared/LogHandling/NotLogged';
+// import KwiliCommon from '../Shared/LogHandling/common';
 import classes from '../Chat/Chat.scss';
 import CareChat from './Api';
 
