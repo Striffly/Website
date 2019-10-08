@@ -22,6 +22,19 @@ class MapRouting extends Component {
         this.setRoutingError = this.setRoutingError.bind(this)
     }
 
+    componentDidMount() {
+        this.props.onRef(this)
+    }
+    componentWillUnmount() {
+        this.props.onRef(undefined)
+    }
+
+    //use selected hospital as end of route
+    updateHospital(hospitalPos) {
+        let wayPoints = [this.state.start, hospitalPos];
+        this.state.routing.setWaypoints(wayPoints);
+    }
+
     //we are adding this leaflet routing element to the state so we can update it
     createRoutingElement() {
 
@@ -42,11 +55,8 @@ class MapRouting extends Component {
             addWaypoints: true,
             draggableWaypoints: true,
             plan: L.Routing.plan(waypoints, {
-                createMarker: function(i, wp) {
-                    return L.marker(wp.latLng, {
-                        draggable: true,
-                    });
-                },
+                createMarker: function() { return null; },
+                draggable: true,
                 routeWhileDragging: true
             }),
         });
@@ -84,6 +94,7 @@ class MapRouting extends Component {
         let wayPoints = [this.state.searchedPos, this.state.end];
         this.state.routing.setWaypoints(wayPoints);
         this.setState({showConfirmStartPos: false});
+        this.setState({start: this.state.searchedPos});
         this.props.updateUserPos(this.state.searchedPos);
     }
 

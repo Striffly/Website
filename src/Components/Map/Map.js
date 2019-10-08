@@ -86,9 +86,14 @@ class LeafletMap extends Component {
         this.map = map;
     };
 
+    onClick = (pos) => {
+        this.child.updateHospital(pos);// do stuff
+    };
+
     createHospitalMarkers() {
         if (this.state.nearestHospitals !== []) {
             let markers = [];
+            let self = this;
             const iconMarkup = renderToStaticMarkup(<FaAmbulance className={classes.hospitalIcon}/>);
             const customIcon = divIcon({
                 html: iconMarkup,
@@ -100,7 +105,8 @@ class LeafletMap extends Component {
 
             this.state.nearestHospitals.forEach(function (hospital) {
                 markers.push(
-                    <Marker position={[hospital.geo[1], hospital.geo[0]]} key={hospital.id} icon={customIcon}>
+                    <Marker position={[hospital.geo[1], hospital.geo[0]]} key={hospital.id} icon={customIcon}
+                            onClick={() => self.onClick([hospital.geo[1], hospital.geo[0]])}>
                         <Popup>
                             {hospital.n}
                         </Popup>
@@ -146,6 +152,7 @@ class LeafletMap extends Component {
                             routeTo={this.state.routeTo}
                             map={this.map}
                             updateUserPos={(pos) => this.setState({userPos: pos})}
+                            onRef={ref => (this.child = ref)}
                         />
                     }
                     {this.state.hospitalMarkers}
