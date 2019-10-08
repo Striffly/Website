@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import L from "leaflet";
+import L, {divIcon} from "leaflet";
 import "leaflet-routing-machine";
 import { withLeaflet } from "react-leaflet";
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import {renderToStaticMarkup} from "react-dom/server";
+import { FaUser } from 'react-icons/fa';
+import classes from "./Map.scss";
 
 class MapRouting extends Component {
 
@@ -43,6 +46,12 @@ class MapRouting extends Component {
         let waypoints = [routeFrom, routeTo];
         let self = this;
 
+        const iconMarkup = renderToStaticMarkup(<FaUser className={classes.userIcon}/>);
+        const userIcon = divIcon({
+            html: iconMarkup,
+            className: 'userIcon'
+        });
+
         //create leaflet routing control element and add it to the map
         let routingControl = L.Routing.control({
             waypoints,
@@ -55,8 +64,23 @@ class MapRouting extends Component {
             addWaypoints: true,
             draggableWaypoints: true,
             plan: L.Routing.plan(waypoints, {
-                createMarker: function() { return null; },
-                draggable: true,
+                createMarker: function(i, wp, nWps) {
+                    //replace start icon with user custom icon
+                    if (i === 0) {
+                        return L.marker(wp.latLng, {
+                            icon: userIcon,
+                            draggable: true,
+                        });
+                    } else if (i === nWps - 1) {
+                        //there is already an hospital icon on the last waypoint
+                        return null;
+                    } else {
+                        //usual icon for additional waypoints
+                        return L.marker(wp.latLng, {
+                            draggable: true,
+                        });
+                    }
+                },
                 routeWhileDragging: true
             }),
         });
@@ -104,6 +128,7 @@ class MapRouting extends Component {
                 show={this.state.showConfirmStartPos}
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                onHide={() => this.setState({showConfirmStartPos: false})}
             >
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
@@ -129,6 +154,7 @@ class MapRouting extends Component {
                 show={this.state.showNoRouteFound}
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                onHide={() => this.setState({showNoRouteFound: false})}
             >
                 <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">

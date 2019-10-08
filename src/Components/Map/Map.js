@@ -71,6 +71,8 @@ class LeafletMap extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if ((this.state.userPos !== prevState.userPos)) {
             this.getNearestHospitals();
+        } else if ((this.state.radius !== prevState.radius)) {
+            this.getNearestHospitals();
         }
     }
 
@@ -90,7 +92,14 @@ class LeafletMap extends Component {
         this.child.updateHospital(pos);// do stuff
     };
 
+    setRadius(val) {
+        console.log(val);
+        this.setState({radius: val});
+        console.log(this.state.radius);
+    }
+
     createHospitalMarkers() {
+
         if (this.state.nearestHospitals !== []) {
             let markers = [];
             let self = this;
@@ -99,9 +108,6 @@ class LeafletMap extends Component {
                 html: iconMarkup,
                 className: 'hospitalIcon'
             });
-    setRadius(val) {
-      console.log(val);
-    }
 
             this.state.nearestHospitals.forEach(function (hospital) {
                 markers.push(
@@ -142,7 +148,7 @@ class LeafletMap extends Component {
                         ) : null
                     }
                     <ZoomControl position="bottomleft" />
-                    <Search addMarker={this.addMarker}/>
+                    <Search />
                     <LocateControl startDirectly/>
                     {
                         //only display routing when user is geolocated
@@ -157,7 +163,7 @@ class LeafletMap extends Component {
                     }
                     {this.state.hospitalMarkers}
                 </Map>
-                <DiscreteSlider setRadius={this.setRadius}/>
+                <DiscreteSlider setRadius={(val) => this.setState({radius: val})}/>
             </div>
         );
     }
