@@ -38,7 +38,7 @@ class LeafletMap extends Component {
     }
 
     getNearestHospitals() {
-        this.setState({ stop: true });
+        this.setState({ stop: true })
         let url = this.state.userPos ? "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.userPos.lat
                 + "&long=" + this.state.userPos.lng : "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.lat
                 + "&long=" + this.state.lng;
@@ -46,14 +46,11 @@ class LeafletMap extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
+                    this.setState({nearestHospitals: result.msg});
                     if (result.msg !== undefined && result.msg[0] !== undefined && result.msg[0].geo !== undefined) {
-                        this.setState({
-                                nearestHospitals: result.msg,
-                                selectedHospital: true,
-                                routeTo: [result.msg[0].geo[1], result.msg[0].geo[0]]},
-                        this.createHospitalMarkers);
-                    } else {
-                        this.setState({nearestHospitals: result.msg});
+                        this.createHospitalMarkers();
+                        this.setState({routeTo: [result.msg[0].geo[1], result.msg[0].geo[0]]});
+                        this.setState({selectedHospital: true});
                     }
                 },
                 (error) => {
@@ -93,8 +90,8 @@ class LeafletMap extends Component {
         this.map = map;
     };
 
-    onClickHospital = (pos) => {
-        this.child.updateHospital(pos);
+    onClick = (pos) => {
+        this.child.updateHospital(pos);// do stuff
     };
 
     setRadius(val) {
@@ -114,7 +111,7 @@ class LeafletMap extends Component {
             this.state.nearestHospitals.forEach(function (hospital) {
                 markers.push(
                     <Marker position={[hospital.geo[1], hospital.geo[0]]} key={hospital.id} icon={customIcon}
-                            onClick={() => self.onClickHospital([hospital.geo[1], hospital.geo[0]])}>
+                            onClick={() => self.onClick([hospital.geo[1], hospital.geo[0]])}>
                         <Popup>
                             {hospital.n}
                         </Popup>
@@ -122,8 +119,6 @@ class LeafletMap extends Component {
                 );
             });
             this.setState({hospitalSelected: true, hospitalMarkers: markers});
-            if (this.child !== undefined)
-                this.child.updateHospital([this.state.nearestHospitals[0].geo[1], this.state.nearestHospitals[0].geo[0]]);
         }
     }
 
