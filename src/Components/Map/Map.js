@@ -39,22 +39,21 @@ class LeafletMap extends Component {
 
     getNearestHospitals() {
         let url = this.state.userPos ? "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.userPos.lat
-                + "&long=" + this.state.userPos.lng : "https://www.kwili.fr:8080/urgences?radius=10&lat=" + this.state.lat
+                + "&long=" + this.state.userPos.lng : "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.lat
                 + "&long=" + this.state.lng;
         fetch(url)
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.setState({
-                        nearestHospitals: result.msg
-                    });
-                    this.createHospitalMarkers();
+                    this.setState({nearestHospitals: result.msg});
+                    if (result.msg !== undefined && result.msg[0] !== undefined && result.msg[0].geo !== undefined) {
+                        this.createHospitalMarkers();
+                        this.setState({routeTo: [result.msg[0].geo[1], result.msg[0].geo[0]]});
+                        this.setState({selectedHospital: true});
+                    }
                 },
                 (error) => {
-                    this.setState({
-                        nearestHospitals: [],
-                        error
-                    });
+                    this.setState({error});
                 }
             )
     }
@@ -64,7 +63,8 @@ class LeafletMap extends Component {
         if (this.state.isMapInit === false) {
             this.setState({
                 isMapInit: true
-            })
+            });
+            this.getNearestHospitals();
         }
     }
 
@@ -93,9 +93,7 @@ class LeafletMap extends Component {
     };
 
     setRadius(val) {
-        console.log(val);
         this.setState({radius: val});
-        console.log(this.state.radius);
     }
 
     createHospitalMarkers() {
@@ -119,7 +117,7 @@ class LeafletMap extends Component {
                     </Marker>
                 );
             });
-            this.setState({hospitalMarkers: markers});
+            this.setState({hospitalSelected: true, hospitalMarkers: markers});
         }
     }
 
@@ -151,9 +149,9 @@ class LeafletMap extends Component {
                     <Search />
                     <LocateControl startDirectly/>
                     {
-                        //only display routing when user is geolocated
+                        //only display routing when user is geolocated and an hospital is clicked
                         //or use default coordinates if user refused geolocation
-                        this.state.isMapInit && this.state.userPos && <MapRouting
+                        this.state.isMapInit && this.state.userPos && this.state.selectedHospital && <MapRouting
                             routeFrom={this.state.userPos}
                             routeTo={this.state.routeTo}
                             map={this.map}
