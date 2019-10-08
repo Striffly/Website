@@ -38,8 +38,8 @@ class LeafletMap extends Component {
     }
 
     getNearestHospitals() {
-        let url = this.state.userPos ? "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.userPos.lng
-                + "&long=" + this.state.userPos.lat : "https://www.kwili.fr:8080/urgences?radius=10&lat=" + this.state.lat
+        let url = this.state.userPos ? "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.userPos.lat
+                + "&long=" + this.state.userPos.lng : "https://www.kwili.fr:8080/urgences?radius=10&lat=" + this.state.lat
                 + "&long=" + this.state.lng;
         fetch(url)
             .then(res => res.json())
