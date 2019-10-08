@@ -54,7 +54,9 @@ class MapRouting extends Component {
 
         //If user enters an address, ask if they want if they want to use it itinerary start
         map.on('geosearch/showlocation', function(event) {
-            let searchedPos = [Number(event.location.y), Number(event.location.x)];
+            let searchedPos = {
+                lat: Number(event.location.y),
+                lng: Number(event.location.x)};
             self.setShowStartPosConfirmationModal(true, searchedPos);
         });
 
@@ -81,7 +83,8 @@ class MapRouting extends Component {
     updateStartPosCloseModal() {
         let wayPoints = [this.state.searchedPos, this.state.end];
         this.state.routing.setWaypoints(wayPoints);
-        this.setState({showConfirmStartPos: false})
+        this.setState({showConfirmStartPos: false});
+        this.props.updateUserPos(this.state.searchedPos);
     }
 
     displayConfirmationModal() {

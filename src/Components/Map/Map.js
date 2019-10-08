@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import {
-    Map, TileLayer, ZoomControl, Marker
+    Map, TileLayer, ZoomControl, Marker, Popup
 } from 'react-leaflet';
 import MapRouting from "./MapRouting";
 import LocateControl from './Shared/LocateUser';
 import DiscreteSlider from './Shared/Slider';
 import Search from './Shared/Search';
+import { FaAmbulance } from 'react-icons/fa';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { divIcon } from 'leaflet';
+import classes from "./Map.scss"
 
 class LeafletMap extends Component {
 
@@ -19,13 +23,40 @@ class LeafletMap extends Component {
             markerLat: 0,
             markerLng: 0,
             zoom: 5,
+            radius: 0.03,
             isMapInit: false,
+            hospitalSelected: false,
+            //list of hospitals
+            nearestHospitals: [],
+            hospitalMarkers: [],
             userPos: null,
             //in case userPos != route start pos
             routeFrom: [46.5, 2.618787],
             routeTo: [48.85412, 2.4065929]
         };
         this.addMarker = this.addMarker.bind(this);
+    }
+
+    getNearestHospitals() {
+        let url = this.state.userPos ? "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.userPos.lng
+                + "&long=" + this.state.userPos.lat : "https://www.kwili.fr:8080/urgences?radius=10&lat=" + this.state.lat
+                + "&long=" + this.state.lng;
+        fetch(url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        nearestHospitals: result.msg
+                    });
+                    this.createHospitalMarkers();
+                },
+                (error) => {
+                    this.setState({
+                        nearestHospitals: [],
+                        error
+                    });
+                }
+            )
     }
 
     componentDidMount() {
@@ -38,12 +69,13 @@ class LeafletMap extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.map.contextValue.layerContainer._lastCenter !== this.state.routeFrom)
-            this.setState({routeFrom: this.map.contextValue.layerContainer._lastCenter});
+        if ((this.state.userPos !== prevState.userPos)) {
+            this.getNearestHospitals();
+        }
     }
 
-    updateUserPosition(event) {
-        this.setState({userPos: event.latlng});
+    updateUserPosition(pos) {
+        this.setState({userPos: pos});
     }
 
     addMarker(x, y) {
@@ -54,10 +86,30 @@ class LeafletMap extends Component {
         this.map = map;
     };
 
+    createHospitalMarkers() {
+        if (this.state.nearestHospitals !== []) {
+            let markers = [];
+            const iconMarkup = renderToStaticMarkup(<FaAmbulance className={classes.hospitalIcon}/>);
+            const customIcon = divIcon({
+                html: iconMarkup,
+                className: 'hospitalIcon'
+            });
     setRadius(val) {
       console.log(val);
     }
 
+            this.state.nearestHospitals.forEach(function (hospital) {
+                markers.push(
+                    <Marker position={[hospital.geo[1], hospital.geo[0]]} key={hospital.id} icon={customIcon}>
+                        <Popup>
+                            {hospital.n}
+                        </Popup>
+                    </Marker>
+                );
+            });
+            this.setState({hospitalMarkers: markers});
+        }
+    }
 
     render() {
         const position = [this.state.lat, this.state.lng];
@@ -71,7 +123,7 @@ class LeafletMap extends Component {
                     minZoom={2}
                     max Zoom={19}
                     ref={this.saveMap}
-                    onLocationFound={event => {this.updateUserPosition(event)}}
+                    onLocationFound={event => {this.updateUserPosition(event.latlng)}}
                     onLocationError={() => this.setState({userPos: position})}
                 >
                     <TileLayer
@@ -92,8 +144,11 @@ class LeafletMap extends Component {
                         this.state.isMapInit && this.state.userPos && <MapRouting
                             routeFrom={this.state.userPos}
                             routeTo={this.state.routeTo}
-                            map={this.map}/>
+                            map={this.map}
+                            updateUserPos={(pos) => this.setState({userPos: pos})}
+                        />
                     }
+                    {this.state.hospitalMarkers}
                 </Map>
                 <DiscreteSlider setRadius={this.setRadius}/>
             </div>
