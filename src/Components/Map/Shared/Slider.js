@@ -6,13 +6,15 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-function DiscreteSlider() {
-  const [radius, setRadius] = useState(10);
+function DiscreteSlider(props) {
+  // const [radius, setRadius] = useState(10);
   return (
     <div style={{ width: '90vw', marginLeft: '5vw', marginTop: '4vh' }}>
-      <Typography id="discrete-slider" gutterBottom>
-        {`Rayon de la recherche: ${radius}km`}
-      </Typography>
+    {
+      // <Typography id="discrete-slider" gutterBottom>
+      //   {`Rayon de la recherche: ${radius}km`}
+      // </Typography>
+    }
       <Slider
         defaultValue={10}
         getAriaValueText={valuetext}
@@ -20,7 +22,7 @@ function DiscreteSlider() {
         valueLabelDisplay="auto"
         step={10}
         marks
-        onChange={(e, val) => setRadius(val)}
+        onChange={(e, val) => props.setRadius(val)}
         min={10}
         max={100}
       />
