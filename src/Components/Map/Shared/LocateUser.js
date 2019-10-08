@@ -25,6 +25,10 @@ class LocateControl extends Component {
         if (startDirectly) {
             lc.start();
         }
+
+        if (this.props.stop) {
+          lc.stop();
+        }
     }
 
     render() {

@@ -3,10 +3,12 @@ import {
 	FaMapMarkedAlt,
 	FaComments,
  } from "react-icons/fa";
- import AnchorLink from 'react-anchor-link-smooth-scroll';
- import { displayContactForm } from './ContactForm';
- import { displayPreviewSection } from "./PreviewSection";
- import classes from "./Parallax.scss";
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+
+import { displayContactForm } from './ContactForm';
+import { displayPreviewSection } from "./PreviewSection";
+import doctorOfficePicture from '../../../Images/doctor_office.jpg';
+import classes from "./Parallax.scss";
 
 const descBoxes = [
 	{
@@ -39,7 +41,7 @@ export function displayParallax() {
 
 		<div className={classes.Parallax}>
 
-			<div className={classes.MainPres}>
+			<div className={classes.MainPres} style={{ backgroundImage: `url(${doctorOfficePicture})`}}>
 				<h1>KWILI</h1>
 				<h3>Ma santé dans ma poche</h3>
 				<AnchorLink href='#ourVisionSection' className={classes.knowMore}>

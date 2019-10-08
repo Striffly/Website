@@ -9,7 +9,7 @@ class Search extends Component {
     const searchOptions =  {
       // style: 'button',
       autoClose: true,
-      showMarker: true,
+      showMarker: false,
       searchLabel: 'Ex : pays, villes, CP...',
       // keepResult: false,
       position: 'topleft',
@@ -19,7 +19,7 @@ class Search extends Component {
     searchControl.addTo(map);
 
     map.on('geosearch/showlocation', (event)  => {
-      this.props.addMarker(event.location.y, event.location.x);
+      //this.props.addMarker(event.location.y, event.location.x);
     });
   }
 
