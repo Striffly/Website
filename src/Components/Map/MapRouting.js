@@ -115,7 +115,7 @@ class MapRouting extends Component {
     }
 
     //update start position with user-given address
-    updateWithSearchedPosCloseModal() {
+    updateStartPosCloseModal() {
         let wayPoints = [this.state.searchedPos, this.state.end];
         this.state.routing.setWaypoints(wayPoints);
         this.setState({showConfirmStartPos: false});
@@ -143,7 +143,7 @@ class MapRouting extends Component {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={() => this.setState({showConfirmStartPos: false})} variant="secondary">Non</Button>
-                    <Button onClick={() => this.updateWithSearchedPosCloseModal()} variant="primary">Oui</Button>
+                    <Button onClick={() => this.updateStartPosCloseModal()} variant="primary">Oui</Button>
                 </Modal.Footer>
             </Modal>
         );
