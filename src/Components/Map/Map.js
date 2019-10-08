@@ -38,6 +38,7 @@ class LeafletMap extends Component {
     }
 
     getNearestHospitals() {
+        this.setState({ stop: true })
         let url = this.state.userPos ? "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.userPos.lat
                 + "&long=" + this.state.userPos.lng : "https://www.kwili.fr:8080/urgences?radius=" + this.state.radius + "&lat=" + this.state.lat
                 + "&long=" + this.state.lng;
@@ -62,7 +63,8 @@ class LeafletMap extends Component {
         document.title = 'Kwili | Urgences à proximité';
         if (this.state.isMapInit === false) {
             this.setState({
-                isMapInit: true
+                isMapInit: true,
+                stop: false
             });
             this.getNearestHospitals();
         }
@@ -97,7 +99,6 @@ class LeafletMap extends Component {
     }
 
     createHospitalMarkers() {
-
         if (this.state.nearestHospitals !== []) {
             let markers = [];
             let self = this;
