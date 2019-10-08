@@ -54,6 +54,10 @@ class LeafletMap extends Component {
         this.map = map;
     };
 
+    setRadius(val) {
+      val = val;
+    }
+
 
     render() {
         const position = [this.state.lat, this.state.lng];
@@ -89,7 +93,7 @@ class LeafletMap extends Component {
                             map={this.map}/>
                     }
                 </Map>
-                <DiscreteSlider />
+                <DiscreteSlider setRadius={this.setRadius}/>
             </div>
         );
     }
