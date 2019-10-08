@@ -35,6 +35,7 @@ class MapRouting extends Component {
     //use selected hospital as end of route
     updateHospital(hospitalPos) {
         let wayPoints = [this.state.start, hospitalPos];
+        this.setState({end: hospitalPos});
         this.state.routing.setWaypoints(wayPoints);
     }
 
@@ -137,7 +138,7 @@ class MapRouting extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <p>
-                        Voulez-vous utiliser cette adresse comme point de départ de l'ititinéraire jusqu'à l'hôpital ?
+                        Voulez-vous utiliser cette adresse comme point de départ ?
                     </p>
                 </Modal.Body>
                 <Modal.Footer>
