@@ -55,7 +55,7 @@ class LeafletMap extends Component {
     };
 
     setRadius(val) {
-      val = val;
+      console.log(val);
     }
 
 
