@@ -19,3 +19,12 @@
   border-style: solid;
   padding: 4px;
 }
+
+.hospitalPopup {
+  position: fixed;
+  display: flex;
+  flex-flow: row;
+  place-content: center;
+  flex-grow: 1;
+  font-weight: bold;
+}
