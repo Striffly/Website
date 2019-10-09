@@ -13,8 +13,8 @@ function HospitalPopup(props) {
                 {props.name}
                 <br />{"+33 00 70 00 70 07"}
                 <br />{"affluence: Faible"}
-                <br /><FigureImage src={hospital_pics[0]} alt="Hospital_pic" style={{width: null, height: null}} rounded={true}/>;
-                <br /><FigureImage src={hospital_pics[1]} alt="Hospital_pic" style={{width: null, height: null}} rounded={true}/>;
+                <br /><FigureImage src={hospital_pics[0]} alt="Hospital_pic" style={{width: null, height: null}} rounded={true}/>
+                <br /><FigureImage src={hospital_pics[1]} alt="Hospital_pic" style={{width: null, height: null}} rounded={true}/>
             </Popup>
         </div>
   );
