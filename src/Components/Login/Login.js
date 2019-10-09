@@ -20,8 +20,9 @@ class Login extends Component {
         this.handleClose = this.handleClose.bind(this);
     }
     redirectPrescription(loginResponse) {
+		console.log(loginResponse);
         if (loginResponse != null) {
-            CareApi.setSessionToken(loginResponse.data.token);
+            KwiliApi.setSessionToken(loginResponse.data.access_token);
             this.props.history.push('/prescription');
         } else {
           this.errorMsg = 'Erreur : email et/ou mot de passe invalide.'
