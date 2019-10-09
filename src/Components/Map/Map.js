@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
-    Map, TileLayer, ZoomControl, Marker, Popup
+    Map, TileLayer, ZoomControl, Marker
 } from 'react-leaflet';
 import MapRouting from "./MapRouting";
 import LocateControl from './Shared/LocateUser';
 import DiscreteSlider from './Shared/Slider';
+import HospitalPopup from "./Shared/HospitalPopup"
 import Search from './Shared/Search';
 import { FaAmbulance } from 'react-icons/fa';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -98,7 +99,7 @@ class LeafletMap extends Component {
         this.setState({radius: val});
     }
 
-    createHospitalMarkers() {
+    createHospitalMarkers(callbackfn, thisArg) {
         if (this.state.nearestHospitals !== []) {
             let markers = [];
             let self = this;
@@ -112,9 +113,7 @@ class LeafletMap extends Component {
                 markers.push(
                     <Marker position={[hospital.geo[1], hospital.geo[0]]} key={hospital.id} icon={customIcon}
                             onClick={() => self.onClick([hospital.geo[1], hospital.geo[0]])}>
-                        <Popup>
-                            {hospital.n}
-                        </Popup>
+                        <HospitalPopup name={hospital.n}/>
                     </Marker>
                 );
             });
