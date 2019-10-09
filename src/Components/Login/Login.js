@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
-import CareApi from '../Shared/Api/api';
+import KwiliApi from '../Shared/Api/api';
 
 import classes from '../../Styles.scss';
 
@@ -39,7 +39,7 @@ class Login extends Component {
 			this.errorMsg = 'Erreur : mot de passe manquant. Veuillez entrer votre mot de passe.';
 			this.setState({ show: true })
 		} else {
-			var promise = CareApi.login(login, password);
+			var promise = KwiliApi.login(login, password);
 			promise.then(this.redirectPrescription);
 		}
 	}
@@ -61,7 +61,7 @@ class Login extends Component {
 			this.setState({ show: true });
 			return;
 		} else
-			var promise = CareApi.register(name, last_name, email, password, type);
+			var promise = KwiliApi.register(name, last_name, email, password, type);
 		promise.then(function (response) {
 			if (response != null && response.status === 200) {
 				alert("We've sent you a validation email");

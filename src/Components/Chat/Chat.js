@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import KwiliApi from '../Shared/Api/api';
-// import NotLogged from '../Shared/LogHandling/NotLogged';
-// import KwiliCommon from '../Shared/LogHandling/common';
+import KwiliCommon from '../Shared/LogHandling/common';
 import classes from '../Chat/Chat.scss';
 import CareChat from './Api';
 
@@ -10,7 +9,7 @@ export default class Login extends Component {
 		super(props);
 		this.state = {
 			users: [],
-			chat: null,
+			chat: new CareChat(KwiliApi.getSessionToken(), this.onMessage),
 			data: [],
 		};
 		this.onMessage = (response) => {
@@ -33,7 +32,6 @@ export default class Login extends Component {
 
 	componentWillMount() {
 		KwiliApi.searchUser('').then(this.refreshInfo);
-		this.state.chat = new CareChat(KwiliApi.getSessionToken(), this.onMessage);
 	}
 
 	handleChange(e) {
@@ -49,9 +47,8 @@ export default class Login extends Component {
 	}
 
 	messagesDisplayer(msgs) {
-		return;
-		var arr = msgs.map(item => this.msgBox(item));
-		return arr;
+		//var arr = msgs.map(item => this.msgBox(item));
+		//return arr;
 	}
 
 	cardItem(img, name) {
@@ -92,8 +89,6 @@ export default class Login extends Component {
 	}
 
 	render() {
-		if (!KwiliApi.isConnected())
-			return <NotLogged />;
 		if (KwiliApi.isConnected() === false)
 			return KwiliCommon.notLoggedPage();
 		this.state.chat.start("5d9a527f46906778e730c047");
