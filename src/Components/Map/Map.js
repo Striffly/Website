@@ -99,7 +99,7 @@ class LeafletMap extends Component {
         this.setState({radius: val});
     }
 
-    createHospitalMarkers(callbackfn, thisArg) {
+    createHospitalMarkers() {
         if (this.state.nearestHospitals !== []) {
             let markers = [];
             let self = this;
