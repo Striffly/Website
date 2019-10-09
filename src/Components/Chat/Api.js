@@ -1,11 +1,10 @@
 import io from 'socket.io-client';
-
 export default class CareChat {
   constructor(token, onMessageCallback) {
-    this.address = 'http://Kwili.fr:8081/';
+    this.address = 'https://www.kwili.fr:8081/';
     this.token = token;
     this.is_connected = false;
-    this.socket = io.connect(this.address, { query: this.token, transports: ['websocket'] });
+    this.socket = new io.connect(this.address, { query: 'token=' + this.token, transports: ['websocket'] });
     this.data = [];
     this.socket.on('message', onMessageCallback);
   }
@@ -25,10 +24,10 @@ export default class CareChat {
     _on_receive_message(message) {
         this.data += message;
     }
-    start() {
+    start(user_id) {
         if (this.is_connected)
             return true;
-        this.socket.emit('start', this.token, this._on_receive_start);
+        this.socket.emit('start', user_id, this._on_receive_start);
     }
     send(message) {
         if (!this.is_connected)

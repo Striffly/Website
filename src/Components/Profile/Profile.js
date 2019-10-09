@@ -13,6 +13,7 @@ export default class Login extends Component {
             user: null,
         };
         this.refreshInfo = (response) => {
+			console.log(response);
             if (response != null) {
                 this.setState({
                     user: response.data.user,
@@ -41,7 +42,7 @@ export default class Login extends Component {
                     <hr className="my-4" />
                     <p>{this.state.user.type}</p>
                     <p className="lead">
-                        <Link className={`btn btn-lg btn-warning ${classes.btnSpace} to="/profile/settings`}>Settings</Link>
+                        <Link className={`btn btn-lg btn-warning ${classes.btnSpace}`} to="/profile/settings">Settings</Link>
                         <Link className={`btn btn-lg btn-outline-danger ${classes.btnSpace}`} to="/login" onClick={KwiliApi.logout}>Logout</Link>
                     </p>
                 </div>
